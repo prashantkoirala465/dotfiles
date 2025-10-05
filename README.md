@@ -288,6 +288,8 @@ stow --target=$HOME/.config .config/alacritty # Alacritty only
 │   │   └── bordersrc
 │   ├── btop/                     # System monitor
 │   │   └── btop.conf
+│   ├── configstore/              # Configuration storage
+│   │   └── update-notifier-nodemon.json
 │   ├── gh/                       # GitHub CLI
 │   │   ├── config.yml
 │   │   └── hosts.yml
@@ -300,12 +302,15 @@ stow --target=$HOME/.config .config/alacritty # Alacritty only
 │   ├── nvim/                     # Neovim configuration
 │   │   ├── init.lua
 │   │   ├── lazy-lock.json
-│   │   └── ...
+│   │   ├── lazyvim.json
+│   │   ├── stylua.toml
+│   │   └── lua/                  # Lua configuration modules
 │   ├── qBittorrent/              # Torrent client
 │   │   ├── qBittorrent.ini
 │   │   └── qBittorrent-data.ini
 │   ├── raycast/                  # Productivity launcher
-│   │   └── config.json
+│   │   ├── config.json
+│   │   └── extensions/           # Custom extensions
 │   ├── sketchybar/               # Menu bar customization
 │   │   ├── sketchybarrc
 │   │   └── colors.sh
