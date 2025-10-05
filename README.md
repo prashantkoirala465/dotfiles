@@ -70,20 +70,12 @@ brew install zsh zsh-completions
 # Development Tools
 brew install --cask neovide
 brew install neovim
-brew install gh
 
 # System Utilities
 brew install --cask aerospace
 brew install borders
 brew install btop htop
 brew install yazi
-brew install --cask linearmouse
-
-# Media & Productivity
-brew install --cask qbittorrent
-brew install --cask raycast
-brew install --cask spotify
-brew install spicetify-cli
 
 # Optional: Sketchybar (macOS menu bar)
 brew install --cask sf-symbols
@@ -206,11 +198,6 @@ stow --target=$HOME/.config .config/alacritty # Alacritty only
 - Smooth scrolling and animations
 - Font ligature support
 
-### GitHub CLI (gh)
-- **Command-line GitHub integration**
-- Repository management
-- Issue and PR handling
-- Authentication configuration
 </details>
 
 <details>
@@ -249,30 +236,8 @@ stow --target=$HOME/.config .config/alacritty # Alacritty only
 - Preview support for various file types
 - Vim-like keybindings
 
-### LinearMouse
-- **Mouse acceleration control**
-- Precision settings for different mice
-- Per-application configurations
 </details>
 
-<details>
-<summary><strong>🎵 Media & Productivity</strong></summary>
-
-### Spicetify
-- **Spotify customization**
-- Custom themes and extensions
-- Enhanced functionality and appearance
-
-### qBittorrent
-- **BitTorrent client**
-- Optimized settings for performance and privacy
-- Custom UI preferences
-
-### Raycast
-- **Productivity launcher**
-- Custom commands and shortcuts
-- System integration
-</details>
 
 ## 🗂️ Repository Structure
 
@@ -288,15 +253,8 @@ stow --target=$HOME/.config .config/alacritty # Alacritty only
 │   │   └── bordersrc
 │   ├── btop/                     # System monitor
 │   │   └── btop.conf
-│   ├── configstore/              # Configuration storage
-│   │   └── update-notifier-nodemon.json
-│   ├── gh/                       # GitHub CLI
-│   │   ├── config.yml
-│   │   └── hosts.yml
 │   ├── htop/                     # System monitor
 │   │   └── htoprc
-│   ├── linearmouse/              # Mouse settings
-│   │   └── linearmouse.json
 │   ├── neovide/                  # Neovim GUI
 │   │   └── config.toml
 │   ├── nvim/                     # Neovim configuration
@@ -305,17 +263,9 @@ stow --target=$HOME/.config .config/alacritty # Alacritty only
 │   │   ├── lazyvim.json
 │   │   ├── stylua.toml
 │   │   └── lua/                  # Lua configuration modules
-│   ├── qBittorrent/              # Torrent client
-│   │   ├── qBittorrent.ini
-│   │   └── qBittorrent-data.ini
-│   ├── raycast/                  # Productivity launcher
-│   │   ├── config.json
-│   │   └── extensions/           # Custom extensions
 │   ├── sketchybar/               # Menu bar customization
 │   │   ├── sketchybarrc
 │   │   └── colors.sh
-│   ├── spicetify/                # Spotify customization
-│   │   └── config-xpui.ini
 │   └── yazi/                     # File manager
 │       ├── yazi.toml
 │       ├── keymap.toml
