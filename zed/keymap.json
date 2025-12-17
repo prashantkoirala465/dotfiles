@@ -5,7 +5,6 @@
   {
     "context": "",
     "bindings": {
-      // Toggle bottom dock (terminal / problems / output)
       "alt-d": "workspace::ToggleBottomDock",
     },
   },
@@ -16,31 +15,23 @@
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      // ----- Files / Pickers -----
-      "space space": "tab_switcher::Toggle", // like <leader><leader>
-      "space f f": "tab_switcher::Toggle", // file picker equivalent
+      // ----- Files / Buffers -----
+      "space space": "tab_switcher::Toggle",
+      "space f f": "tab_switcher::Toggle",
 
-      // ----- Explorer -----
-      "space e": "project_panel::ToggleFocus", // <leader>e
-
-      // ----- Git -----
-      "space g g": "git_panel::ToggleFocus", // <leader>gg
-
-      // ----- Terminal -----
-      "space t t": "terminal_panel::ToggleFocus", // <leader>tt
-
-      // ----- Diagnostics / Problems -----
-      "space x x": "diagnostics::Deploy", // <leader>xx
-
-      // ----- AI / Tools -----
-      "space a a": "agent::ToggleFocus", // <leader>aa
+      // ----- Panels -----
+      "space e": "project_panel::ToggleFocus",
+      "space g g": "git_panel::ToggleFocus",
+      "space t t": "terminal_panel::ToggleFocus",
+      "space d d": "debug_panel::ToggleFocus",
+      "space x x": "diagnostics::Deploy",
+      "space a a": "agent::ToggleFocus",
 
       // ----- LSP -----
-      "space l r": "editor::RestartLanguageServer", // <leader>lr
+      "space l r": "editor::RestartLanguageServer",
 
       // ----- Debug -----
-      "space d d": "debug_panel::ToggleFocus", // <leader>dd
-      "space d b": "editor::ToggleBreakpoint", // <leader>db
+      "space d b": "editor::ToggleBreakpoint",
 
       // ----- Save / Quit -----
       "space w": "workspace::Save",
@@ -53,28 +44,25 @@
   },
 
   // ==================================================
-  // WINDOW / PANE MANAGEMENT (Ctrl-w)
+  // WINDOW / PANE MANAGEMENT (Ctrl-w like Neovim)
   // ==================================================
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      // Splits
-      "ctrl-w v": "pane::SplitRight", // vertical
-      "ctrl-w s": "pane::SplitDown", // horizontal
+      "ctrl-w v": "pane::SplitRight",
+      "ctrl-w s": "pane::SplitDown",
 
-      // Move between windows
       "ctrl-w h": "workspace::ActivatePaneLeft",
       "ctrl-w j": "workspace::ActivatePaneDown",
       "ctrl-w k": "workspace::ActivatePaneUp",
       "ctrl-w l": "workspace::ActivatePaneRight",
 
-      // Close window
       "ctrl-w q": "pane::CloseActiveItem",
     },
   },
 
   // ==================================================
-  // TMUX-STYLE NAVIGATION (works everywhere)
+  // TMUX-STYLE PANE NAVIGATION
   // ==================================================
   {
     "context": "Pane || ProjectPanel || Terminal || Editor && vim_mode == normal",
@@ -98,7 +86,7 @@
   },
 
   // ==================================================
-  // TAB SWITCHER (LazyVim feel)
+  // TAB SWITCHER (Vim navigation)
   // ==================================================
   {
     "context": "TabSwitcher",
@@ -111,18 +99,18 @@
   },
 
   // ==================================================
-  // DEBUGGER (LazyVim-like mnemonics)
+  // DEBUGGER (LazyVim mnemonics)
   // ==================================================
   {
     "context": "DebugPanel || Editor && vim_mode == normal",
     "bindings": {
+      "space d g": "debugger::Start",
       "space d c": "debugger::Continue",
       "space d n": "debugger::StepOver",
       "space d i": "debugger::StepInto",
       "space d o": "debugger::StepOut",
-      "space d s": "debugger::Stop",
       "space d r": "debugger::Restart",
-      "space d g": "debugger::Start",
+      "space d s": "debugger::Stop",
     },
   },
 
@@ -150,27 +138,39 @@
   },
 
   // ==================================================
-  // ESC CLOSES EVERYTHING
+  // SPACE CLOSES PANELS (ERGONOMIC FIX)
   // ==================================================
   {
     "context": "ProjectPanel",
-    "bindings": { "escape": "project_panel::ToggleFocus" },
+    "bindings": {
+      "space": "project_panel::ToggleFocus",
+      "escape": "project_panel::ToggleFocus",
+    },
   },
   {
     "context": "GitPanel",
-    "bindings": { "escape": "git_panel::ToggleFocus" },
+    "bindings": {
+      "space": "git_panel::ToggleFocus",
+      "escape": "git_panel::ToggleFocus",
+    },
   },
   {
     "context": "DebugPanel",
-    "bindings": { "escape": "debug_panel::ToggleFocus" },
+    "bindings": {
+      "space": "debug_panel::ToggleFocus",
+      "escape": "debug_panel::ToggleFocus",
+    },
   },
   {
     "context": "AgentPanel",
-    "bindings": { "escape": "agent::ToggleFocus" },
+    "bindings": {
+      "space": "agent::ToggleFocus",
+      "escape": "agent::ToggleFocus",
+    },
   },
 
   // ==================================================
-  // INSERT MODE ESCAPE (LazyVim default)
+  // INSERT MODE ESCAPE
   // ==================================================
   {
     "context": "Editor && vim_mode == insert",
