@@ -192,6 +192,10 @@ run = 'move-node-to-workspace P'
 if.app-id = 'com.postmanlabs.mac'
 run = 'move-node-to-workspace P'
 
+[[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
+run = 'move-node-to-workspace P'
+
 # --- WORKSPACE B: Browsers (Secondary Monitor) ---
 # CRITICAL: Browsers on secondary for testing while coding on main
 [[on-window-detected]]
@@ -461,10 +465,10 @@ run = 'layout floating'
 # ============================================================
 # ZED EDITOR - Floats independently (optional)
 # ============================================================
-[[on-window-detected]]
-if.app-id = 'dev.zed.Zed'
-run = 'layout floating'
-
+# [[on-window-detected]]
+# if.app-id = 'dev.zed.Zed'
+# run = 'layout floating'
+#
 # ============================================================
 # 10x FRONTEND DEVELOPER WORKFLOW GUIDE
 # ============================================================
