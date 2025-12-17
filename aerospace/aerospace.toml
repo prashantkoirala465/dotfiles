@@ -1,67 +1,36 @@
-# Place a copy of this config to ~/.aerospace.toml
-# After that, you can edit ~/.aerospace.toml to your liking
+# ~/.aerospace.toml
+# 10x Frontend Developer Configuration - Dual Monitor Optimized
+# Your keybinds preserved + Smart workspace routing for productivity
 
-# It's not necessary to copy all keys to your config.
-# If the key is missing in your config, "default-config.toml" will serve as a fallback
-
-# You can use it to add commands that run after login to macOS user session.
-# 'start-at-login' needs to be 'true' for 'after-login-command' to work
-# Available commands: https://nikitabobko.github.io/AeroSpace/commands
-after-login-command = []
-
-# You can use it to add commands that run after AeroSpace startup.
-# 'after-startup-command' is run after 'after-login-command'
-# Available commands : https://nikitabobko.github.io/AeroSpace/commands
-# after-startup-command = []
-
-# Optionally launch SketchyBar on AeroSpace startup (if not already handled elsewhere)
+# ============================================================
+# STARTUP & INTEGRATIONS
+# ============================================================
+start-at-login = true
 after-startup-command = ['exec-and-forget sketchybar']
 
-# Trigger SketchyBar event on workspace change
 exec-on-workspace-change = [
   '/bin/bash',
   '-c',
   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
 ]
 
-# Start AeroSpace at login
-start-at-login = true
-
-# Normalizations. See: https://nikitabobko.github.io/AeroSpace/guide#normalization
+# ============================================================
+# CORE SETTINGS
+# ============================================================
 enable-normalization-flatten-containers = true
 enable-normalization-opposite-orientation-for-nested-containers = true
-
-# See: https://nikitabobko.github.io/AeroSpace/guide#layouts
-# The 'accordion-padding' specifies the size of accordion padding
-# You can set 0 to disable the padding feature
-accordion-padding = 0
-
-# Possible values: tiles|accordion
 default-root-container-layout = 'tiles'
-
-# Possible values: horizontal|vertical|auto
-# 'auto' means: wide monitor (anything wider than high) gets horizontal orientation,
-#               tall monitor (anything higher than wide) gets vertical orientation
 default-root-container-orientation = 'auto'
-
-# Possible values: (qwerty|dvorak)
-# See https://nikitabobko.github.io/AeroSpace/guide#key-mapping
+accordion-padding = 0
 key-mapping.preset = 'qwerty'
 
-# Mouse follows focus when focused monitor changes
-# Drop it from your config, if you don't like this behavior
-# See https://nikitabobko.github.io/AeroSpace/guide#on-focus-changed-callbacks
-# See https://nikitabobko.github.io/AeroSpace/commands#move-mouse
+# Mouse follows focus
 on-focused-monitor-changed = ['move-mouse monitor-lazy-center']
-on-focus-changed = "move-mouse window-lazy-center"
+on-focus-changed = 'move-mouse window-lazy-center'
 
-# Gaps between windows (inner-*) and between monitor edges (outer-*).
-# Possible values:
-# - Constant:     gaps.outer.top = 8
-# - Per monitor:  gaps.outer.top = [{ monitor.main = 16 }, { monitor."some-pattern" = 32 }, 24]
-#                 In this example, 24 is a default value when there is no match.
-#                 Monitor pattern is the same as for 'workspace-to-monitor-force-assignment'.
-#                 See: https://nikitabobko.github.io/AeroSpace/guide#assign-workspaces-to-monitors
+# ============================================================
+# GAPS - Consistent across monitors
+# ============================================================
 [gaps]
 inner.horizontal = 10
 inner.vertical = 10
@@ -70,48 +39,55 @@ outer.bottom = 10
 outer.top = 38
 outer.right = 10
 
-# 'main' binding mode declaration
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
-# 'main' binding mode must be always presented
+# ============================================================
+# WORKSPACE → MONITOR ASSIGNMENTS
+# ============================================================
+# Main Monitor (Laptop): Primary development work
+# Secondary Monitor (External): Browser testing, reference, monitoring
+[workspace-to-monitor-force-assignment]
+# Main Monitor - Core Development
+1 = 'main' # System & Utils (quick access)
+2 = 'main' # Flex/Project workspace
+3 = 'main' # Flex/Project workspace  
+4 = 'main' # Flex/Project workspace
+5 = 'main' # Flex/Project workspace
+T = 'main' # Terminals (always on main for quick access)
+P = 'main' # Dev Tools (VSCode, Cursor, GitHub, Postman)
+
+# Secondary Monitor - Testing & Reference
+B = 'secondary' # Browsers (Chrome/Safari for testing sites)
+V = 'secondary' # Visual/Design (Figma, Neovim for reference)
+6 = 'secondary' # Documents (for specs/documentation)
+N = 'secondary' # Notes & Productivity (quick reference)
+
+# Can be on either (flexible)
+E = ['main', 'secondary'] # Media (background music)
+M = ['main', 'secondary'] # Communication (check when needed)
+
+# Workspaces 7-9 unassigned for dynamic project use
+
+# ============================================================
+# MAIN MODE - Your Original Keybinds (Preserved)
+# ============================================================
 [mode.main.binding]
 
-# All possible keys:
-# - Letters.        a, b, c, ..., z
-# - Numbers.        0, 1, 2, ..., 9
-# - Keypad numbers. keypad0, keypad1, keypad2, ..., keypad9
-# - F-keys.         f1, f2, ..., f20
-# - Special keys.   minus, equal, period, comma, slash, backslash, quote, semicolon, backtick,
-#                   leftSquareBracket, rightSquareBracket, space, enter, esc, backspace, tab
-# - Keypad special. keypadClear, keypadDecimalMark, keypadDivide, keypadEnter, keypadEqual,
-#                   keypadMinus, keypadMultiply, keypadPlus
-# - Arrows.         left, down, up, right
-
-# All possible modifiers: cmd, alt, ctrl, shift
-
-# All possible commands: https://nikitabobko.github.io/AeroSpace/commands
-
-# You can uncomment this line to open up terminal with alt + enter shortcut
-# See: https://nikitabobko.github.io/AeroSpace/commands#exec-and-forget
-# alt-enter = 'exec-and-forget open -n /System/Applications/Utilities/Terminal.app'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#layout
+# --- LAYOUT CONTROL ---
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#focus
+# --- NAVIGATION (Your vim-style hjkl) ---
 alt-h = 'focus left'
 alt-j = 'focus down'
 alt-k = 'focus up'
 alt-l = 'focus right'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#move
+# --- MOVE WINDOWS ---
 alt-shift-h = 'move left'
 alt-shift-j = 'move down'
 alt-shift-k = 'move up'
 alt-shift-l = 'move right'
 
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace
+# --- WORKSPACES (Your original) ---
 alt-1 = 'workspace 1'
 alt-2 = 'workspace 2'
 alt-3 = 'workspace 3'
@@ -129,7 +105,7 @@ alt-p = 'workspace P'
 alt-t = 'workspace T'
 alt-v = 'workspace V'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
+# --- MOVE TO WORKSPACE (Your original) ---
 alt-shift-1 = 'move-node-to-workspace 1'
 alt-shift-2 = 'move-node-to-workspace 2'
 alt-shift-3 = 'move-node-to-workspace 3'
@@ -147,43 +123,36 @@ alt-shift-p = 'move-node-to-workspace P'
 alt-shift-t = 'move-node-to-workspace T'
 alt-shift-v = 'move-node-to-workspace V'
 
+# --- UTILITIES ---
 alt-shift-f = 'fullscreen'
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
-# See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
-# See: https://nikitabobko.github.io/AeroSpace/commands#mode
+# --- MODE SWITCHING ---
 alt-shift-semicolon = 'mode service'
-
 alt-shift-r = 'mode resize'
 
+# ============================================================
+# RESIZE MODE - Your Original
+# ============================================================
 [mode.resize.binding]
 h = 'resize width -50'
 j = 'resize height +50'
 k = 'resize height -50'
 l = 'resize width +50'
 b = 'balance-sizes'
-
-
-# See: https://nikitabobko.github.io/AeroSpace/commands#resize
 minus = 'resize smart -50'
 equal = 'resize smart +50'
-
 enter = 'mode main'
 esc = 'mode main'
 
-# 'service' binding mode declaration.
-# See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
+# ============================================================
+# SERVICE MODE - Your Original
+# ============================================================
 [mode.service.binding]
 esc = ['reload-config', 'mode main']
-r = ['flatten-workspace-tree', 'mode main'] # reset layout
-#s = ['layout sticky tiling', 'mode main'] # sticky is not yet supported https://github.com/nikitabobko/AeroSpace/issues/2
-f = [
-  'layout floating tiling',
-  'mode main',
-] # Toggle between floating and tiling layout
+r = ['flatten-workspace-tree', 'mode main']
+f = ['layout floating tiling', 'mode main']
 backspace = ['close-all-windows-but-current', 'mode main']
 
 alt-shift-h = ['join-with left', 'mode main']
@@ -191,293 +160,341 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
-# Workspace Assignments
-# Apps are grouped into workspaces based on their purpose:
-# - Workspace T: Terminals (coding-focused)
-# - Workspace P: Development tools (IDEs, version control, API testing, design)
-# - Workspace B: Web browsers (research, documentation, testing)
-# - Workspace M: Communication (messaging, video calls, email)
-# - Workspace N: Productivity (notes, calendars, task management)
-# - Workspace E: Media & Entertainment (music, video, books, games)
-# - Workspace V: Visual Media (photos, videos, screen mirroring)
-# - Workspace 6: Document Editing (word processing, spreadsheets, PDFs)
-# - Workspace 1: System & Utilities (settings, utilities, misc tools)
-# - Workspaces 2-5, 7-9: Available for project-specific or custom use
+# ============================================================
+# SMART APP ROUTING - 10x Frontend Developer Workflow
+# ============================================================
 
-# Terminals (Workspace T)
+# --- WORKSPACE T: Terminals (Main Monitor) ---
+# Quick access to terminal on main screen
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
-run = "move-node-to-workspace T"
+run = 'move-node-to-workspace T'
 
 [[on-window-detected]]
 if.app-id = 'dev.warp.Warp-Stable'
-run = "move-node-to-workspace T"
+run = 'move-node-to-workspace T'
 
-# Development Tools (Workspace P)
+# --- WORKSPACE P: Primary Dev Tools (Main Monitor) ---
+# Your code editors stay on main monitor
 [[on-window-detected]]
 if.app-id = 'com.microsoft.VSCode'
-run = "move-node-to-workspace P"
+run = 'move-node-to-workspace P'
 
 [[on-window-detected]]
 if.app-id = 'com.cursor.ide'
-run = "move-node-to-workspace P"
-
-[[on-window-detected]]
-if.app-id = 'com.github.neovide.neovide'
-run = "move-node-to-workspace P"
+run = 'move-node-to-workspace P'
 
 [[on-window-detected]]
 if.app-id = 'com.github.GitHubClient'
-run = "move-node-to-workspace P"
+run = 'move-node-to-workspace P'
 
 [[on-window-detected]]
 if.app-id = 'com.postmanlabs.mac'
-run = "move-node-to-workspace P"
+run = 'move-node-to-workspace P'
 
-[[on-window-detected]]
-if.app-id = 'com.figma.Desktop'
-run = "move-node-to-workspace P"
-
-# Web Browsers (Workspace B)
+# --- WORKSPACE B: Browsers (Secondary Monitor) ---
+# CRITICAL: Browsers on secondary for testing while coding on main
 [[on-window-detected]]
 if.app-id = 'com.google.Chrome'
-run = "move-node-to-workspace B"
+run = 'move-node-to-workspace B'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Safari'
-run = "move-node-to-workspace B"
+run = 'move-node-to-workspace B'
 
-# Communication (Workspace M)
+# --- WORKSPACE V: Visual/Design Tools (Secondary Monitor) ---
+# Design reference while coding
 [[on-window-detected]]
-if.app-id = 'net.whatsapp.WhatsApp'
-run = "move-node-to-workspace M"
-
-[[on-window-detected]]
-if.app-id = 'com.hammerandchisel.discord'
-run = "move-node-to-workspace M"
+if.app-id = 'com.figma.Desktop'
+run = 'move-node-to-workspace V'
 
 [[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = "move-node-to-workspace M"
+if.app-id = 'com.github.neovide.neovide'
+run = 'move-node-to-workspace V'
 
-[[on-window-detected]]
-if.app-id = 'com.tencent.xinWeChat'
-run = "move-node-to-workspace M"
-
-[[on-window-detected]]
-if.app-id = 'us.zoom.xos'
-run = "move-node-to-workspace M"
-
-[[on-window-detected]]
-if.app-id = 'com.tencent.wemeet.app'
-run = "move-node-to-workspace M"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.FaceTime'
-run = "move-node-to-workspace M"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.mail'
-run = "move-node-to-workspace M"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.MobileSMS'
-run = "move-node-to-workspace M"
-
-# Productivity (Workspace N)
-[[on-window-detected]]
-if.app-id = 'com.apple.Notes'
-run = "move-node-to-workspace N"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.Stickies'
-run = "move-node-to-workspace N"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.shortcuts'
-run = "move-node-to-workspace N"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.freeform'
-run = "move-node-to-workspace N"
-
-[[on-window-detected]]
-if.app-id = 'com.trello.Trello'
-run = "move-node-to-workspace N"
-
-# Media & Entertainment (Workspace E)
-[[on-window-detected]]
-if.app-id = 'com.spotify.client'
-run = "move-node-to-workspace E"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.Music'
-run = "move-node-to-workspace E"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.podcasts'
-run = "move-node-to-workspace E"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.tv'
-run = "move-node-to-workspace E"
-
-[[on-window-detected]]
-if.app-id = 'org.videolan.vlc'
-run = "move-node-to-workspace E"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.iBooksX'
-run = "move-node-to-workspace E"
-
-[[on-window-detected]]
-if.app-id = 'com.apple.chess'
-run = "move-node-to-workspace E"
-
-# Visual Media (Workspace V)
 [[on-window-detected]]
 if.app-id = 'com.apple.Photos'
-run = "move-node-to-workspace V"
+run = 'move-node-to-workspace V'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.QuickTimePlayerX'
-run = "move-node-to-workspace V"
+run = 'move-node-to-workspace V'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.PhotoBooth'
-run = "move-node-to-workspace V"
+run = 'move-node-to-workspace V'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.ImagePlayground'
-run = "move-node-to-workspace V"
+run = 'move-node-to-workspace V'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.iPhoneMirroring'
-run = "move-node-to-workspace V"
+run = 'move-node-to-workspace V'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.VoiceMemos'
-run = "move-node-to-workspace V"
+run = 'move-node-to-workspace V'
 
-# Document Editing (Workspace 6)
+# --- WORKSPACE 6: Documents (Secondary Monitor) ---
+# Specs and documentation visible while coding
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Word'
-run = "move-node-to-workspace 6"
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.microsoft.Excel'
-run = "move-node-to-workspace 6"
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Docs'
-run = "move-node-to-workspace 6"
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Sheets'
-run = "move-node-to-workspace 6"
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Slides'
-run = "move-node-to-workspace 6"
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.nitropdf.NitroPDFPro'
-run = "move-node-to-workspace 6"
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Preview'
-run = "move-node-to-workspace 6"
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.TextEdit'
-run = "move-node-to-workspace 6"
+run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.google.DriveFS'
-run = "move-node-to-workspace 6"
+run = 'move-node-to-workspace 6'
 
-# System & Utilities (Workspace 1)
+# --- WORKSPACE N: Notes & Productivity (Secondary Monitor) ---
+# Quick reference notes
+[[on-window-detected]]
+if.app-id = 'com.apple.Notes'
+run = 'move-node-to-workspace N'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Stickies'
+run = 'move-node-to-workspace N'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.shortcuts'
+run = 'move-node-to-workspace N'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.freeform'
+run = 'move-node-to-workspace N'
+
+[[on-window-detected]]
+if.app-id = 'com.trello.Trello'
+run = 'move-node-to-workspace N'
+
+# --- WORKSPACE M: Communication (Flexible) ---
+[[on-window-detected]]
+if.app-id = 'net.whatsapp.WhatsApp'
+run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+if.app-id = 'com.hammerandchisel.discord'
+run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+if.app-id = 'com.tinyspeck.slackmacgap'
+run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+if.app-id = 'com.tencent.xinWeChat'
+run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+if.app-id = 'us.zoom.xos'
+run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+if.app-id = 'com.tencent.wemeet.app'
+run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.FaceTime'
+run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.mail'
+run = 'move-node-to-workspace M'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.MobileSMS'
+run = 'move-node-to-workspace M'
+
+# --- WORKSPACE E: Media (Flexible) ---
+[[on-window-detected]]
+if.app-id = 'com.spotify.client'
+run = 'move-node-to-workspace E'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Music'
+run = 'move-node-to-workspace E'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.podcasts'
+run = 'move-node-to-workspace E'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.tv'
+run = 'move-node-to-workspace E'
+
+[[on-window-detected]]
+if.app-id = 'org.videolan.vlc'
+run = 'move-node-to-workspace E'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.iBooksX'
+run = 'move-node-to-workspace E'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.chess'
+run = 'move-node-to-workspace E'
+
+# --- WORKSPACE 1: System & Utilities (Main Monitor) ---
 [[on-window-detected]]
 if.app-id = 'com.apple.systempreferences'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.AppStore'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Passwords'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.calculator'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Dictionary'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.clock'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.FontBook'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Automator'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.findmy'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Home'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.ImageCaptureApp'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.hegenberg.KeyboardCleanTool'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.Maps'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.alienator88.Pearcleaner'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'org.qbittorrent.qBittorrent'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.stocks'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'cx.c3.theunarchiver'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.weather'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.tips'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.TimeMachine'
-run = "move-node-to-workspace 1"
+run = 'move-node-to-workspace 1'
 
-# Notes:
-# - Removed 'layout floating' for Calculator, Dictionary, and Clock to fix the error, as 'move-node-to-workspace' must be the last command in the callback (see https://github.com/nikitabobko/AeroSpace/issues/20).
-# - To make these apps float, you can manually toggle the floating layout after opening them (use alt-shift-semicolon, then f) or report the use case to the AeroSpace GitHub issue for future support.
-# - Workspaces 2-5, 7-9 remain unassigned for project-specific tasks or flexibility.
+# ============================================================
+# FLOATING APPS - Better UX for certain apps
+# ============================================================
+[[on-window-detected]]
+if.app-id = 'com.apple.calculator'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.systempreferences'
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = 'com.apple.Passwords'
+run = 'layout floating'
+
+# ============================================================
+# ZED EDITOR - Floats independently (optional)
+# ============================================================
+[[on-window-detected]]
+if.app-id = 'dev.zed.Zed'
+run = 'layout floating'
+
+# ============================================================
+# 10x FRONTEND DEVELOPER WORKFLOW GUIDE
+# ============================================================
+# Your Dual Monitor Setup:
+# ┌──────────────────────┬──────────────────────┐
+# │   MAIN MONITOR       │  SECONDARY MONITOR   │
+# │   (Laptop)           │  (External)          │
+# ├──────────────────────┼──────────────────────┤
+# │ Alt+T: Terminals     │ Alt+B: Browsers      │ ← KEY
+# │ Alt+P: Code (VS/Cur) │ Alt+V: Figma/Design  │
+# │ Alt+1: System/Utils  │ Alt+6: Docs/Specs    │
+# │ Alt+2-5: Projects    │ Alt+N: Notes         │
+# │ Alt+M: Comms (flex)  │                      │
+# │ Alt+E: Music (flex)  │                      │
+# │ Alt+7-9: Free        │                      │
+# └──────────────────────┴──────────────────────┘
+#
+# Frontend Developer Flow:
+# 1. Code in VSCode/Cursor (Alt+P) on MAIN monitor
+# 2. Run dev server in terminal (Alt+T) on MAIN monitor  
+# 3. Test site in browser (Alt+B) on SECONDARY monitor ← You can see changes live!
+# 4. Reference Figma designs (Alt+V) on SECONDARY monitor
+# 5. Check documentation (Alt+6) on SECONDARY monitor
+# 6. Use Alt+2-5 for multiple project workspaces
+#
+# Pro Tips:
+# - Alt+Shift+Tab: Move entire workspace between monitors
+# - Alt+Tab: Jump between last 2 workspaces (code ↔ browser)
+# - Alt+Shift+F: Fullscreen browser for detailed testing
+# - Keep Spotify (Alt+E) in background while coding
+# - Alt+M for quick Slack checks without losing focus
+#
+# Your muscle memory preserved: hjkl navigation, all BENMPVT shortcuts intact!
