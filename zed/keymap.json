@@ -69,13 +69,12 @@
   {
     "context": "Pane || ProjectPanel || Terminal || Editor && vim_mode == normal",
     "bindings": {
-      "alt-h": "workspace::ActivatePaneLeft",
-      "alt-j": "workspace::ActivatePaneDown",
-      "alt-k": "workspace::ActivatePaneUp",
-      "alt-l": "workspace::ActivatePaneRight",
+      "ctrl-h": "workspace::ActivatePaneLeft",
+      "ctrl-j": "workspace::ActivatePaneDown",
+      "ctrl-k": "workspace::ActivatePaneUp",
+      "ctrl-l": "workspace::ActivatePaneRight",
     },
   },
-
   // ==================================================
   // COMPLETIONS / CODE ACTIONS
   // ==================================================
