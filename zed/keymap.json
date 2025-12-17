@@ -163,13 +163,13 @@
       "escape": "debug_panel::ToggleFocus",
     },
   },
-  {
-    "context": "AgentPanel",
-    "bindings": {
-      "space": "agent::ToggleFocus",
-      "escape": "agent::ToggleFocus",
-    },
-  },
+  // {
+  //   "context": "AgentPanel",
+  //   "bindings": {
+  //     "space": "agent::ToggleFocus",
+  //     "escape": "agent::ToggleFocus",
+  //   },
+  // },
 
   // ==================================================
   // INSERT MODE ESCAPE
