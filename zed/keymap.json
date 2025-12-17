@@ -1,3 +1,4 @@
+
 [
   // ==================================================
   // GLOBAL
@@ -5,8 +6,8 @@
   {
     "context": "",
     "bindings": {
-      "alt-d": "workspace::ToggleBottomDock",
-    },
+      "alt-d": "workspace::ToggleBottomDock"
+    }
   },
 
   // ==================================================
@@ -39,8 +40,8 @@
 
       // ----- Tab movement -----
       "[ [": "pane::SwapItemLeft",
-      "] ]": "pane::SwapItemRight",
-    },
+      "] ]": "pane::SwapItemRight"
+    }
   },
 
   // ==================================================
@@ -57,8 +58,8 @@
       "ctrl-w k": "workspace::ActivatePaneUp",
       "ctrl-w l": "workspace::ActivatePaneRight",
 
-      "ctrl-w q": "pane::CloseActiveItem",
-    },
+      "ctrl-w q": "pane::CloseActiveItem"
+    }
   },
 
   // ==================================================
@@ -70,8 +71,8 @@
       "alt-h": "workspace::ActivatePaneLeft",
       "alt-j": "workspace::ActivatePaneDown",
       "alt-k": "workspace::ActivatePaneUp",
-      "alt-l": "workspace::ActivatePaneRight",
-    },
+      "alt-l": "workspace::ActivatePaneRight"
+    }
   },
 
   // ==================================================
@@ -81,8 +82,8 @@
     "context": "Editor && (showing_code_actions || showing_completions)",
     "bindings": {
       "ctrl-j": "editor::ContextMenuNext",
-      "ctrl-k": "editor::ContextMenuPrevious",
-    },
+      "ctrl-k": "editor::ContextMenuPrevious"
+    }
   },
 
   // ==================================================
@@ -94,8 +95,8 @@
       "j": ["workspace::SendKeystrokes", "down"],
       "k": ["workspace::SendKeystrokes", "up"],
       "d": "tab_switcher::CloseSelectedItem",
-      "escape": "tab_switcher::Toggle",
-    },
+      "escape": "tab_switcher::Toggle"
+    }
   },
 
   // ==================================================
@@ -110,8 +111,8 @@
       "space d i": "debugger::StepInto",
       "space d o": "debugger::StepOut",
       "space d r": "debugger::Restart",
-      "space d s": "debugger::Stop",
-    },
+      "space d s": "debugger::Stop"
+    }
   },
 
   // ==================================================
@@ -120,21 +121,21 @@
   {
     "context": "Terminal",
     "bindings": {
-      "ctrl-n": "workspace::NewTerminal",
-    },
+      "ctrl-n": "workspace::NewTerminal"
+    }
   },
   {
     "context": "Terminal && !vi_mode",
     "bindings": {
       "escape": "terminal_panel::ToggleFocus",
-      "shift-space": "terminal::ToggleViMode",
-    },
+      "shift-space": "terminal::ToggleViMode"
+    }
   },
   {
     "context": "Terminal && vi_mode",
     "bindings": {
-      "escape": "terminal::ToggleViMode",
-    },
+      "escape": "terminal::ToggleViMode"
+    }
   },
 
   // ==================================================
@@ -144,29 +145,29 @@
     "context": "ProjectPanel",
     "bindings": {
       "space": "project_panel::ToggleFocus",
-      "escape": "project_panel::ToggleFocus",
-    },
+      "escape": "project_panel::ToggleFocus"
+    }
   },
   {
     "context": "GitPanel",
     "bindings": {
       "space": "git_panel::ToggleFocus",
-      "escape": "git_panel::ToggleFocus",
-    },
+      "escape": "git_panel::ToggleFocus"
+    }
   },
   {
     "context": "DebugPanel",
     "bindings": {
       "space": "debug_panel::ToggleFocus",
-      "escape": "debug_panel::ToggleFocus",
-    },
+      "escape": "debug_panel::ToggleFocus"
+    }
   },
   {
     "context": "AgentPanel",
     "bindings": {
       "space": "agent::ToggleFocus",
-      "escape": "agent::ToggleFocus",
-    },
+      "escape": "agent::ToggleFocus"
+    }
   },
 
   // ==================================================
@@ -175,7 +176,7 @@
   {
     "context": "Editor && vim_mode == insert",
     "bindings": {
-      "j k": ["workspace::SendKeystrokes", "escape"],
-    },
-  },
+      "j k": ["workspace::SendKeystrokes", "escape"]
+    }
+  }
 ]
