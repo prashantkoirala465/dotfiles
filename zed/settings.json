@@ -8,22 +8,22 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "features": {
-    "edit_prediction_provider": "copilot"
+    "edit_prediction_provider": "copilot",
   },
   "show_edit_predictions": true,
   "title_bar": {
     "show_sign_in": true,
     "show_user_picture": true,
     "show_onboarding_banner": true,
-    "show_project_items": true
+    "show_project_items": true,
   },
   "tab_bar": {
-    "show": true
+    "show": true,
   },
   "autosave": {
     "after_delay": {
-      "milliseconds": 1000
-    }
+      "milliseconds": 1000,
+    },
   },
   "helix_mode": false,
   "agent_ui_font_size": 14.0,
@@ -33,25 +33,31 @@
     "default_height": 300.0,
     "button": false,
     "font_family": "MesloLGS Nerd Font",
-    "font_size": 12.0
+    "font_size": 12.0,
   },
   "agent": {
     "default_model": {
       "provider": "copilot_chat",
-      "model": "claude-opus-4.5"
+      "model": "claude-opus-4.5",
     },
-    "model_parameters": []
+    "model_parameters": [],
   },
   "icon_theme": "Material Icon Theme",
   "project_panel": {
     "folder_icons": true,
     "file_icons": true,
-    "dock": "left"
+    "dock": "left",
   },
   "vim_mode": true,
   "theme": {
     "mode": "system",
     "light": "Catppuccin Macchiato",
-    "dark": "Noctis"
-  }
+    "dark": "Noctis",
+  },
+  "outline_panel": {
+    "button": false,
+  },
+  "collaboration_panel": {
+    "button": false,
+  },
 }
