@@ -1,0 +1,181 @@
+[
+  // ==================================================
+  // GLOBAL
+  // ==================================================
+  {
+    "context": "",
+    "bindings": {
+      // Toggle bottom dock (terminal / problems / output)
+      "alt-d": "workspace::ToggleBottomDock",
+    },
+  },
+
+  // ==================================================
+  // EDITOR — NORMAL MODE (LazyVim leader)
+  // ==================================================
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      // ----- Files / Pickers -----
+      "space space": "tab_switcher::Toggle", // like <leader><leader>
+      "space f f": "tab_switcher::Toggle", // file picker equivalent
+
+      // ----- Explorer -----
+      "space e": "project_panel::ToggleFocus", // <leader>e
+
+      // ----- Git -----
+      "space g g": "git_panel::ToggleFocus", // <leader>gg
+
+      // ----- Terminal -----
+      "space t t": "terminal_panel::ToggleFocus", // <leader>tt
+
+      // ----- Diagnostics / Problems -----
+      "space x x": "diagnostics::Deploy", // <leader>xx
+
+      // ----- AI / Tools -----
+      "space a a": "agent::ToggleFocus", // <leader>aa
+
+      // ----- LSP -----
+      "space l r": "editor::RestartLanguageServer", // <leader>lr
+
+      // ----- Debug -----
+      "space d d": "debug_panel::ToggleFocus", // <leader>dd
+      "space d b": "editor::ToggleBreakpoint", // <leader>db
+
+      // ----- Save / Quit -----
+      "space w": "workspace::Save",
+      "space q": "pane::CloseActiveItem",
+
+      // ----- Tab movement -----
+      "[ [": "pane::SwapItemLeft",
+      "] ]": "pane::SwapItemRight",
+    },
+  },
+
+  // ==================================================
+  // WINDOW / PANE MANAGEMENT (Ctrl-w)
+  // ==================================================
+  {
+    "context": "Editor && vim_mode == normal",
+    "bindings": {
+      // Splits
+      "ctrl-w v": "pane::SplitRight", // vertical
+      "ctrl-w s": "pane::SplitDown", // horizontal
+
+      // Move between windows
+      "ctrl-w h": "workspace::ActivatePaneLeft",
+      "ctrl-w j": "workspace::ActivatePaneDown",
+      "ctrl-w k": "workspace::ActivatePaneUp",
+      "ctrl-w l": "workspace::ActivatePaneRight",
+
+      // Close window
+      "ctrl-w q": "pane::CloseActiveItem",
+    },
+  },
+
+  // ==================================================
+  // TMUX-STYLE NAVIGATION (works everywhere)
+  // ==================================================
+  {
+    "context": "Pane || ProjectPanel || Terminal || Editor && vim_mode == normal",
+    "bindings": {
+      "alt-h": "workspace::ActivatePaneLeft",
+      "alt-j": "workspace::ActivatePaneDown",
+      "alt-k": "workspace::ActivatePaneUp",
+      "alt-l": "workspace::ActivatePaneRight",
+    },
+  },
+
+  // ==================================================
+  // COMPLETIONS / CODE ACTIONS
+  // ==================================================
+  {
+    "context": "Editor && (showing_code_actions || showing_completions)",
+    "bindings": {
+      "ctrl-j": "editor::ContextMenuNext",
+      "ctrl-k": "editor::ContextMenuPrevious",
+    },
+  },
+
+  // ==================================================
+  // TAB SWITCHER (LazyVim feel)
+  // ==================================================
+  {
+    "context": "TabSwitcher",
+    "bindings": {
+      "j": ["workspace::SendKeystrokes", "down"],
+      "k": ["workspace::SendKeystrokes", "up"],
+      "d": "tab_switcher::CloseSelectedItem",
+      "escape": "tab_switcher::Toggle",
+    },
+  },
+
+  // ==================================================
+  // DEBUGGER (LazyVim-like mnemonics)
+  // ==================================================
+  {
+    "context": "DebugPanel || Editor && vim_mode == normal",
+    "bindings": {
+      "space d c": "debugger::Continue",
+      "space d n": "debugger::StepOver",
+      "space d i": "debugger::StepInto",
+      "space d o": "debugger::StepOut",
+      "space d s": "debugger::Stop",
+      "space d r": "debugger::Restart",
+      "space d g": "debugger::Start",
+    },
+  },
+
+  // ==================================================
+  // TERMINAL
+  // ==================================================
+  {
+    "context": "Terminal",
+    "bindings": {
+      "ctrl-n": "workspace::NewTerminal",
+    },
+  },
+  {
+    "context": "Terminal && !vi_mode",
+    "bindings": {
+      "escape": "terminal_panel::ToggleFocus",
+      "shift-space": "terminal::ToggleViMode",
+    },
+  },
+  {
+    "context": "Terminal && vi_mode",
+    "bindings": {
+      "escape": "terminal::ToggleViMode",
+    },
+  },
+
+  // ==================================================
+  // ESC CLOSES EVERYTHING
+  // ==================================================
+  {
+    "context": "ProjectPanel",
+    "bindings": { "escape": "project_panel::ToggleFocus" },
+  },
+  {
+    "context": "GitPanel",
+    "bindings": { "escape": "git_panel::ToggleFocus" },
+  },
+  {
+    "context": "DebugPanel",
+    "bindings": { "escape": "debug_panel::ToggleFocus" },
+  },
+  {
+    "context": "AgentPanel",
+    "bindings": { "escape": "agent::ToggleFocus" },
+  },
+
+  // ==================================================
+  // INSERT MODE ESCAPE (LazyVim default)
+  // ==================================================
+  {
+    "context": "Editor && vim_mode == insert",
+    "bindings": {
+      "j k": ["workspace::SendKeystrokes", "escape"],
+    },
+  },
+]
