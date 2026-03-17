@@ -7,9 +7,6 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "edit_predictions": {
-    "provider": "copilot"
-  },
   "base_keymap": "VSCode",
   "buffer_line_height": "comfortable",
   "ui_font_family": ".ZedSans",
@@ -36,6 +33,9 @@
   "status_bar": {
     "cursor_position_button": true,
     "active_language_button": true,
+  },
+  "features": {
+    "edit_prediction_provider": "copilot",
   },
   "show_edit_predictions": true,
   "title_bar": {
@@ -66,14 +66,15 @@
     "tool_permissions": {
       "tools": {
         "terminal": {
-          "default": "allow"
+          "default_mode": "allow"
         }
       }
     },
+    "always_allow_tool_actions": false,
     "default_profile": "write",
     "default_model": {
       "provider": "copilot_chat",
-      "model": "gpt-5-mini",
+      "model": "claude-opus-4.6",
     },
     "model_parameters": [],
   },
