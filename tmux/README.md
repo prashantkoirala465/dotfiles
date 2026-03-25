@@ -39,3 +39,7 @@ Both work by design for cross-machine portability.
 - Popup lazygit: `prefix g`
 
 See detailed docs in `~/.config/tmux/docs`.
+
+## Visual style
+
+- Glass-Classic profile docs: `~/.config/tmux/docs/visual-style.md`

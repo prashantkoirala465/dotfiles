@@ -22,3 +22,8 @@ import = ["~/.config/alacritty/themes/themes/coolnight.toml"]
 
 #for video
 # size = 35.0
+
+[[keyboard.bindings]]
+key = "Return"
+mods = "Shift"
+chars = "\u001b\r"

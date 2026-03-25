@@ -1,0 +1,36 @@
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Secrets & credentials
+github-copilot/
+configstore/
+
+# Binary & database files
+*.exe
+*.mdb
+*.mdb-lock
+
+# Logs
+*.log
+
+# Debug & backup files
+.zed/debug.json
+*.bak
+nvim.bak/
+
+# Runtime state
+mole/
+qBittorrent/
+luminux/
+
+# Editor lock files
+*.swp
+*.swo
+*~
+
+# Git config (personal)
+git/
+
+# Lazy lock (machine-specific)
+nvim/lazy-lock.json
