@@ -19,7 +19,15 @@ brew "bat"
 brew "eza"
 brew "zoxide"
 brew "thefuck"
-brew "direnv"
+brew "mise"
+brew "sd"
+brew "dust"
+brew "hyperfine"
+brew "xh"
+brew "watchexec"
+brew "grex"
+brew "navi"
+brew "tokei"
 brew "sevenzip"
 
 # ── Shell ───────────────────────────────────────────
@@ -48,6 +56,8 @@ brew "luajit"
 
 # ── Formatters & Linters ───────────────────────���──
 brew "prettier"
+brew "biome"
+brew "golangci-lint"
 brew "tree-sitter"
 
 # ── DevOps & Cloud ─────────────────────────────────

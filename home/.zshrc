@@ -189,12 +189,8 @@ alias nd="npm run dev"
 alias nb="npm run build"
 alias ni="npm install"
 
-# ── Direnv (lazy loaded) ──────────────────────────
-_direnv_hook() {
-  unset -f _direnv_hook
-  eval "$(direnv hook zsh)"
-}
-precmd_functions+=(_direnv_hook)
+# ── Mise (replaces nvm + direnv) ─────────────────
+eval "$(mise activate zsh)"
 
 # ── Project Switcher ──────────────────────────────
 fp() {
