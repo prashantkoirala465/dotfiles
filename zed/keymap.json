@@ -15,9 +15,19 @@
   {
     "context": "Editor && vim_mode == normal",
     "bindings": {
-      // ----- Files / Buffers -----
-      "space space": "tab_switcher::Toggle",
-      "space f f": "tab_switcher::Toggle",
+      // ----- Files / Find -----
+      "space space": "file_finder::Toggle",
+      "space f f": "file_finder::Toggle",
+      "space ,": "tab_switcher::Toggle",
+      "space b b": "tab_switcher::Toggle",
+      "space b d": "pane::CloseActiveItem",
+
+      // ----- Search / Grep -----
+      "space /": "pane::DeploySearch",
+      "space s g": "pane::DeploySearch",
+      "space s s": "outline::Toggle",
+      "space s S": "project_symbols::Toggle",
+      "space s b": "buffer_search::Deploy",
 
       // ----- Panels -----
       "space e": "project_panel::ToggleFocus",
@@ -27,8 +37,16 @@
       "space x x": "diagnostics::Deploy",
       "space a a": "agent::ToggleFocus",
 
-      // ----- LSP -----
+      // ----- LSP / Code -----
       "space l r": "editor::RestartLanguageServer",
+      "space c a": "editor::ToggleCodeActions",
+      "space c r": "editor::Rename",
+      "space c f": "editor::Format",
+      "shift-k": "editor::Hover",
+
+      // ----- Diagnostics -----
+      "space x j": "editor::GoToDiagnostic",
+      "space x k": "editor::GoToPrevDiagnostic",
 
       // ----- Debug -----
       "space d b": "editor::ToggleBreakpoint",
@@ -37,11 +55,36 @@
       "space w": "workspace::Save",
       "space q": "pane::CloseActiveItem",
 
+      // ----- Toggle UI -----
+      "space u w": "editor::ToggleSoftWrap",
+      "space u h": "editor::ToggleInlayHints",
+
       // ----- Tab movement -----
       "[ [": "pane::SwapItemLeft",
       "] ]": "pane::SwapItemRight",
       "shift-h": "pane::ActivatePreviousItem",
       "shift-l": "pane::ActivateNextItem",
+    },
+  },
+
+  // ==================================================
+  // SNEAK (two-char search, like leap.nvim)
+  // ==================================================
+  {
+    "context": "Editor && vim_mode == normal && !VimWaiting && !menu",
+    "bindings": {
+      "s": "vim::PushSneak",
+      "shift-s": "vim::PushSneakBackward",
+    },
+  },
+
+  // ==================================================
+  // VISUAL MODE ENHANCEMENTS
+  // ==================================================
+  {
+    "context": "Editor && vim_mode == visual && !VimWaiting && !menu",
+    "bindings": {
+      "shift-s": "vim::PushAddSurrounds",
     },
   },
 
@@ -75,6 +118,7 @@
       "ctrl-l": "workspace::ActivatePaneRight",
     },
   },
+
   // ==================================================
   // COMPLETIONS / CODE ACTIONS
   // ==================================================
@@ -139,7 +183,7 @@
   },
 
   // ==================================================
-  // SPACE CLOSES PANELS (ERGONOMIC FIX)
+  // SPACE/ESC CLOSES PANELS
   // ==================================================
   {
     "context": "ProjectPanel",
@@ -162,13 +206,6 @@
       "escape": "debug_panel::ToggleFocus",
     },
   },
-  // {
-  //   "context": "AgentPanel",
-  //   "bindings": {
-  //     "space": "agent::ToggleFocus",
-  //     "escape": "agent::ToggleFocus",
-  //   },
-  // },
 
   // ==================================================
   // INSERT MODE ESCAPE
