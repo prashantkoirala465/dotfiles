@@ -47,8 +47,6 @@ brew "fastfetch"
 
 # ── Languages & Runtimes ───────────────────────────
 brew "node"
-brew "node@20"
-brew "nvm"
 brew "pnpm"
 brew "go"
 brew "lua"

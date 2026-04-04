@@ -37,29 +37,15 @@ source $BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 export EDITOR="nvim"
 export VISUAL="nvim"
 
-# ── PATH (deduplicated, ordered) ────────────────────
+# ── PATH ─────────────────────────────────────────────
 export BUN_INSTALL="$HOME/.bun"
-export NVM_DIR="$HOME/.nvm"
 
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="$HOME/.rbenv/shims:$PATH"
-export PATH="/opt/homebrew/opt/node@20/bin:$PATH"
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
-export PATH="/usr/local/opt/sqlite/bin:$PATH"
 export PATH="$HOME/.spicetify:$PATH"
 export PATH="$HOME/.strix/bin:$PATH"
-export PATH="$HOME/.opencode/bin:$PATH"
-export PATH="$HOME/.antigravity/antigravity/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
-
-# ── NVM (lazy loaded) ──────────────────────────────
-nvm() {
-  unset -f nvm
-  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
-  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"
-  nvm "$@"
-}
 
 # ── Bun ─────────────────────────────────────────────
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
