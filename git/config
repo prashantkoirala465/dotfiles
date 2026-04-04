@@ -1,0 +1,56 @@
+# Git workflow config (user info is in ~/.gitconfig)
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[push]
+	autoSetupRemote = true
+
+[rebase]
+	autoStash = true
+
+[rerere]
+	enabled = true
+
+[merge]
+	conflictstyle = zdiff3
+
+[diff]
+	algorithm = histogram
+	colorMoved = default
+
+[branch]
+	sort = -committerdate
+
+[fetch]
+	prune = true
+
+[core]
+	pager = delta
+
+[interactive]
+	diffFilter = delta --color-only
+
+[delta]
+	navigate = true
+	side-by-side = true
+	line-numbers = true
+	hyperlinks = true
+
+[alias]
+	co = checkout
+	br = branch
+	ci = commit
+	st = status -sb
+	lg = log --oneline --graph --decorate -20
+	undo = reset --soft HEAD~1
+	amend = commit --amend --no-edit
+	wip = !git add -A && git commit -m 'wip: checkpoint'
+	unwip = reset --soft HEAD~1
+	branches = branch -a --sort=-committerdate
+	stale = branch --merged main
+	last = log -1 HEAD --stat
+	conflicts = diff --name-only --diff-filter=U

@@ -1,6 +1,16 @@
 # Dotfiles
 
-Personal macOS configuration files managed with Git. These live in `~/.config/` and cover terminal, editor, window management, and system tools.
+Personal macOS development environment. One command to set up a new Mac.
+
+## Quick Start
+
+```bash
+# On a fresh Mac:
+git clone https://github.com/prashantkoirala465/.config.git ~/.config
+~/.config/install.sh
+```
+
+The install script handles everything: Homebrew, packages, symlinks, tmux plugins, Go tools, macOS defaults, and shell setup.
 
 ## What's Included
 
@@ -8,122 +18,114 @@ Personal macOS configuration files managed with Git. These live in `~/.config/` 
 
 | Tool | Config | Description |
 |------|--------|-------------|
-| [Alacritty](https://alacritty.org/) | `alacritty/` | GPU-accelerated terminal with custom coolnight theme, MesloLGS Nerd Font, blur + transparency |
-| [tmux](https://github.com/tmux-plugins/tpm) | `tmux/` | Modular config with dual prefix (Ctrl-a / Ctrl-b), adaptive statusline, TPM plugins |
-| [Fish](https://fishshell.com/) | `fish/` | Fish shell config |
-| [Atuin](https://atuin.sh/) | `atuin/` | Shell history sync and search |
-| [thefuck](https://github.com/nvbn/thefuck) | `thefuck/` | Auto-correct mistyped commands |
+| [Alacritty](https://alacritty.org/) | `alacritty/` | GPU-accelerated terminal — coolnight theme, MesloLGS Nerd Font, blur + transparency |
+| [tmux](https://github.com/tmux-plugins/tpm) | `tmux/` | Modular config — C-a prefix, vim-tmux-navigator, session persistence, project workflows |
+| [Atuin](https://atuin.sh/) | `atuin/` | Shell history — fuzzy search, vim keybindings, secrets filter |
+| [Zsh](https://www.zsh.org/) | `home/.zshrc` | Powerlevel10k, lazy-loaded NVM/direnv, FZF with previews, zoxide, 50+ aliases |
 
 ### Editors
 
 | Tool | Config | Description |
 |------|--------|-------------|
-| [Neovim](https://neovim.io/) | `nvim/` | LazyVim-based config with LSP, treesitter, and custom keymaps |
-| [Zed](https://zed.dev/) | `zed/` | Settings, keymap, and themes |
+| [Zed](https://zed.dev/) | `zed/` | Primary editor — vim mode, Go + TypeScript LSP, inlay hints, inline blame |
+| [Neovim](https://neovim.io/) | `nvim/` | Terminal editor — NvChad, 8 LSP servers (TS, Go, Tailwind, ESLint), format-on-save |
+
+### Git
+
+| Tool | Config | Description |
+|------|--------|-------------|
+| [Git](https://git-scm.com/) | `git/` | Delta pager (side-by-side), pull rebase, rerere, histogram diff, aliases |
+| [Lazygit](https://github.com/jesseduffield/lazygit) | `lazygit/` | Git TUI — delta integration, nerd font icons, nvim editor |
 
 ### Window Management & UI
 
 | Tool | Config | Description |
 |------|--------|-------------|
-| [AeroSpace](https://github.com/nikitabobko/AeroSpace) | `aerospace/` | Tiling WM with dual-monitor workspace routing, starts sketchybar on launch |
-| [SketchyBar](https://github.com/FelixKratz/SketchyBar) | `sketchybar/` | Custom macOS menu bar with workspace indicators and system info |
-| [JankyBorders](https://github.com/FelixKratz/JankyBorders) | `borders/` | Rounded window borders, teal active / invisible inactive |
+| [AeroSpace](https://github.com/nikitabobko/AeroSpace) | `aerospace/` | Tiling WM — dual-monitor routing, 80+ app rules, vim-style navigation |
+| [SketchyBar](https://github.com/FelixKratz/SketchyBar) | `sketchybar/` | Custom menu bar |
+| [JankyBorders](https://github.com/FelixKratz/JankyBorders) | `borders/` | Rounded window borders |
 
-### File Management & Monitoring
+### File Management & Tools
 
 | Tool | Config | Description |
 |------|--------|-------------|
-| [Yazi](https://yazi-rs.github.io/) | `yazi/` | Terminal file manager with catppuccin-mocha flavor |
-| [bat](https://github.com/sharkdp/bat) | `bat/` | `cat` replacement with syntax highlighting and custom themes |
+| [Yazi](https://yazi-rs.github.io/) | `yazi/` | Terminal file manager — vim navigation, catppuccin theme |
+| [bat](https://github.com/sharkdp/bat) | `bat/` | Syntax-highlighted `cat` replacement |
 | [btop](https://github.com/aristocratos/btop) | `btop/` | System resource monitor |
-| [htop](https://htop.dev/) | `htop/` | Process viewer |
 
-### Other
+## Key Bindings
 
-| Tool | Config | Description |
-|------|--------|-------------|
-| [Raycast](https://raycast.com/) | `raycast/` | Launcher extensions (GitHub, Color Picker, IP Geolocation, etc.) |
-| [Spicetify](https://spicetify.app/) | `spicetify/` | Spotify client customization |
-| [Pomodoro TUI](https://github.com/zhamlin/pomodoro-tui) | `pomodoro-tui/` | Terminal pomodoro timer |
-| [OpenCode](https://github.com/opencode-ai/opencode) | `opencode/` | AI coding tool config |
+### Tmux (prefix = `C-a`)
 
-### AI Agent Skills
+| Key | Action |
+|-----|--------|
+| `\|` | Split vertical |
+| `-` | Split horizontal |
+| `s` | Fuzzy session picker (sessionx) |
+| `g` | LazyGit popup |
+| `f` | FZF directory finder |
+| `t` | Run tests (auto-detects npm/go) |
+| `b` | Run build |
+| `d` | Run dev server |
+| `Enter` | Floating shell |
 
-| Directory | Description |
-|-----------|-------------|
-| `agents/` | Shared agent skills (Vercel React/composition patterns) |
-| `crush/` | Crush agent skills and superpowers |
-| `goose/` | Goose agent skills and superpowers |
+### Shell Functions
 
-> Note: `crush/` and `goose/` share the same skills subtree and are supersets of `agents/`.
+| Command | Action |
+|---------|--------|
+| `fp` | Fuzzy project switcher → tmux session |
+| `dev <dir>` | Launch dev session (Zed + terminal) |
+| `y` | Yazi file manager (cd on exit) |
 
-## Setup
+### Shell Aliases
 
-```bash
-# Clone
-git clone https://github.com/prashantkoirala465/dotfiles.git ~/.config
-
-# Or clone elsewhere and symlink what you need
-git clone https://github.com/prashantkoirala465/dotfiles.git ~/dotfiles
-ln -s ~/dotfiles/nvim ~/.config/nvim
-ln -s ~/dotfiles/alacritty ~/.config/alacritty
-# ... etc
-```
-
-### Dependencies
-
-```bash
-# Core
-brew install --cask alacritty
-brew install neovim tmux fish atuin thefuck
-
-# Window management
-brew install --cask aerospace
-brew install borders sketchybar
-brew install --cask sf-symbols
-
-# File & system tools
-brew install yazi bat btop htop
-
-# Fonts
-brew install --cask font-meslo-lg-nerd-font
-```
-
-### tmux Plugin Setup
-
-```bash
-# Install TPM
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
-# Inside tmux, press prefix + I to install plugins
-```
+| Alias | Command | Alias | Command |
+|-------|---------|-------|---------|
+| `gs` | `git status -sb` | `nr` | `npm run` |
+| `gc` | `git commit` | `nd` | `npm run dev` |
+| `gp` | `git push` | `nt` | `npm test` |
+| `gl` | `git pull` | `nb` | `npm run build` |
+| `lg` | `lazygit` | `gr` | `go run .` |
+| `gd` | `git diff` | `gt` | `go test ./...` |
+| `glg` | `git log --graph` | `gb` | `go build ./...` |
 
 ## Structure
 
 ```
 ~/.config/
-├── aerospace/          # AeroSpace tiling WM
-├── alacritty/          # Alacritty terminal + themes
-├── agents/             # AI agent skills
-├── atuin/              # Shell history
-├── bat/                # bat themes
-├── borders/            # Window borders
-├── btop/               # System monitor
-├── crush/              # Crush agent skills
-├── fish/               # Fish shell
-├── goose/              # Goose agent skills
-├── htop/               # Process viewer
-├── nvim/               # Neovim (LazyVim)
-├── opencode/           # OpenCode AI
-├── pomodoro-tui/       # Pomodoro timer
-├── raycast/            # Raycast extensions
-├── sketchybar/         # macOS menu bar
-├── spicetify/          # Spotify customization
-├── thefuck/            # Command correction
-├── tmux/               # tmux config (modular)
-├── yazi/               # File manager
-└── zed/                # Zed editor
+├── install.sh              # Bootstrap script (start here)
+├── Brewfile                # All Homebrew packages
+├── scripts/
+│   └── macos.sh            # macOS system defaults
+├── home/
+│   ├── .zshrc              # Shell config (symlinked to ~/)
+│   └── .p10k.zsh           # Prompt theme (symlinked to ~/)
+├── aerospace/              # Tiling window manager
+├── alacritty/              # Terminal emulator
+├── atuin/                  # Shell history
+├── bat/                    # Syntax highlighting
+├── borders/                # Window borders
+├── btop/                   # System monitor
+├── git/                    # Git workflow config
+├── lazygit/                # Git TUI
+├── nvim/                   # Neovim (NvChad)
+├── sketchybar/             # Menu bar
+├── tmux/                   # Terminal multiplexer
+├── yazi/                   # File manager
+└── zed/                    # Primary code editor
 ```
+
+## Per-Project Environment
+
+Drop a `.envrc` file in any project directory and `direnv` will auto-load it:
+
+```bash
+# .envrc
+export DATABASE_URL=postgres://localhost/mydb
+export NODE_ENV=development
+```
+
+Run `direnv allow` once per project to approve the file.
 
 ## License
 

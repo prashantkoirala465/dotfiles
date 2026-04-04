@@ -7,13 +7,13 @@
 # ============================================================
 start-at-login = true
  
- after-startup-command = ['exec-and-forget sketchybar']
-
- exec-on-workspace-change = [
-   '/bin/bash',
-   '-c',
-   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
- ]
+ # after-startup-command = ['exec-and-forget sketchybar']
+ #
+ # exec-on-workspace-change = [
+ #   '/bin/bash',
+ #   '-c',
+ #   'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+ # ]
 #
 # ============================================================
 # CORE SETTINGS
@@ -38,8 +38,8 @@ inner.vertical = 10
 outer.left = 10
 outer.bottom = 10
 # # 38 when sketchybar is enabled
-# outer.top = 38
-outer.top = 38
+# # outer.top = 38
+ outer.top = 5
 outer.right = 10
 
 # ============================================================

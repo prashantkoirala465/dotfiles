@@ -138,4 +138,33 @@
   "collaboration_panel": {
     "button": false,
   },
+
+  // ── Language Overrides ─────────────────────────────
+  "languages": {
+    "Go": {
+      "format_on_save": "on",
+      "formatter": {
+        "external": {
+          "command": "goimports",
+          "arguments": []
+        }
+      },
+      "tab_size": 4,
+      "hard_tabs": true
+    }
+  },
+  "lsp": {
+    "gopls": {
+      "initialization_options": {
+        "hints": {
+          "assignVariableTypes": true,
+          "compositeLiteralFields": true,
+          "constantValues": true,
+          "functionTypeParameters": true,
+          "parameterNames": true,
+          "rangeVariableTypes": true
+        }
+      }
+    }
+  }
 }

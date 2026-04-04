@@ -23,14 +23,32 @@ nvim.bak/
 mole/
 qBittorrent/
 luminux/
+uv/
+pomodoro-tui/
+jiratui/
+opencode/
+spicetify/
+htop/
 
 # Editor lock files
 *.swp
 *.swo
 *~
 
-# Git config (personal)
-git/
+# Git config (track config + ignore, skip credentials)
+git/*
+!git/config
+!git/ignore
 
 # Lazy lock (machine-specific)
 nvim/lazy-lock.json
+
+# Fish (unused)
+fish/
+
+# Claude/AI agent state (machine-specific)
+.claude/
+
+# Homebrew lock
+Brewfile.lock.json
+*.zip

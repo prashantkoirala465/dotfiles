@@ -1,0 +1,44 @@
+gui:
+  showIcons: true
+  nerdFontsVersion: "3"
+  border: rounded
+  showBottomLine: false
+  showPanelJumps: true
+  language: en
+  mouseEvents: true
+  skipDiscardChangeWarning: false
+  sidePanelWidth: 0.3333
+  expandFocusedSidePanel: true
+  mainPanelSplitMode: flexible
+  showFileTree: true
+  showRandomTip: false
+
+git:
+  paging:
+    colorArg: always
+    pager: delta --paging=never
+  autoFetch: true
+  autoRefresh: true
+  branchLogCmd: git log --graph --color=always --abbrev-commit --decorate --date=relative --pretty=medium {{branchName}} --
+  allBranchesLogCmd: git log --graph --all --color=always --abbrev-commit --decorate --date=relative --pretty=medium
+  parseEmoji: true
+
+os:
+  editPreset: nvim
+
+keybinding:
+  universal:
+    quit: q
+    return: <escape>
+    togglePanel: <tab>
+    nextTab: "]"
+    prevTab: "["
+    scrollUpMain: <pgup>
+    scrollDownMain: <pgdown>
+    scrollUpMain-alt1: K
+    scrollDownMain-alt1: J
+
+confirmOnQuit: false
+quitOnTopLevelReturn: true
+
+promptToReturnFromSubprocess: false
