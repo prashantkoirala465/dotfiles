@@ -29,6 +29,9 @@ jiratui/
 opencode/
 spicetify/
 htop/
+raycast/
+configstore/
+docs/notes/
 
 # Editor lock files
 *.swp

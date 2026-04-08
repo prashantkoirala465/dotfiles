@@ -2,6 +2,7 @@
 tap "felixkratz/formulae"
 tap "nikitabobko/tap"
 tap "mongodb/brew"
+tap "charmbracelet/tap"
 
 # ── Core CLI Tools ──────────────────────────────────
 brew "git"
@@ -71,6 +72,10 @@ brew "yt-dlp"
 brew "felixkratz/formulae/borders"
 brew "felixkratz/formulae/sketchybar"
 
+# ── AI CLIs ────────────────────────────────────────
+brew "gemini-cli"
+brew "charmbracelet/tap/crush"
+
 # ── Misc CLI ───────────────────────────────────────
 brew "fend"
 brew "tlrc"
@@ -89,6 +94,11 @@ cask "vlc"
 cask "itsycal"
 cask "betterdisplay"
 cask "db-browser-for-sqlite"
+cask "monitorcontrol"
+
+# ── AI Tooling Casks ──────────────────────────────
+cask "claude-code"
+cask "copilot-cli"
 
 # ── Fonts ──────────────────────────────────────────
 cask "font-meslo-lg-nerd-font"

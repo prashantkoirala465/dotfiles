@@ -43,15 +43,11 @@ export BUN_INSTALL="$HOME/.bun"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 export PATH="$HOME/.spicetify:$PATH"
-export PATH="$HOME/.strix/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
 # ── Bun ─────────────────────────────────────────────
 [ -s "$HOME/.bun/_bun" ] && source "$HOME/.bun/_bun"
-
-# ── AWS ─────────────────────────────────────────────
-export AWS_ENDPOINT_URL_S3=https://garage.rivetsoft.com
 
 # ── FZF ─────────────────────────────────────────────
 eval "$(fzf --zsh)"
@@ -71,7 +67,7 @@ export FZF_ALT_C_COMMAND="fd --type=d --hidden --strip-cwd-prefix --exclude .git
 _fzf_compgen_path() { fd --hidden --exclude .git . "$1" }
 _fzf_compgen_dir() { fd --type=d --hidden --exclude .git . "$1" }
 
-source ~/fzf-git.sh/fzf-git.sh
+[[ -f ~/fzf-git.sh/fzf-git.sh ]] && source ~/fzf-git.sh/fzf-git.sh
 
 show_file_or_dir_preview="if [ -d {} ]; then eza --tree --color=always {} | head -200; else bat -n --color=always --line-range :500 {}; fi"
 export FZF_CTRL_T_OPTS="--preview '$show_file_or_dir_preview'"
@@ -96,10 +92,6 @@ alias ls="eza --icons=always"
 alias ll="eza -la --icons=always --git"
 alias lt="eza --tree --icons=always --level=2"
 alias la="eza -a --icons=always"
-
-# ── Zoxide ──────────────────────────────────────────
-eval "$(zoxide init zsh)"
-alias cd="z"
 
 # ── TheFuck (lazy loaded) ──────────────────────────
 fuck() {
@@ -150,6 +142,7 @@ alias ....="cd ../../.."
 alias reload-zsh="source ~/.zshrc"
 alias edit-zsh="nvim ~/.zshrc"
 alias dots="cd ~/.config"
+alias reset-dev="$HOME/.config/scripts/reset-dev.sh"
 alias python="python3"
 
 # ── Yazi (cd on exit) ──────────────────────────────
@@ -165,7 +158,7 @@ function y() {
 # ── Go Aliases ──────────────────────────────────────
 alias gr="go run ."
 alias gt="go test ./..."
-alias gb="go build ./..."
+alias gob="go build ./..."
 alias gmt="go mod tidy"
 
 # ── Node/NPM Aliases ──────────────────────────────
@@ -225,5 +218,42 @@ dev() {
 . "$HOME/.atuin/bin/env"
 eval "$(atuin init zsh)"
 
+# ── Notes (quick scratch capture) ──────────────────
+notes() {
+  local dir="$HOME/notes"
+  [[ -d "$dir" ]] || mkdir -p "$dir"
+
+  if [[ $# -eq 0 ]]; then
+    command ls -1t "$dir" 2>/dev/null | sed 's/\.md$//'
+    return
+  fi
+
+  local name="$1"
+  local file="$dir/${name}.md"
+  local stamp
+  stamp=$(date "+%Y-%m-%d %H:%M")
+
+  if [[ ! -f "$file" ]]; then
+    {
+      print -- "# ${name}"
+      print --
+      print -- "## ${stamp}"
+      print --
+    } > "$file"
+  else
+    {
+      print --
+      print -- "## ${stamp}"
+      print --
+    } >> "$file"
+  fi
+
+  "${EDITOR:-nvim}" +'$' "$file"
+}
+
 # ── Misc ────────────────────────────────────────────
 alias claude-mem='bun "/Users/prashantkoirala/.claude/plugins/marketplaces/thedotmack/plugin/scripts/worker-service.cjs"'
+
+# ── Zoxide (MUST stay at the bottom per zoxide doctor) ──
+eval "$(zoxide init zsh)"
+alias cd="z"
