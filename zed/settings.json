@@ -7,8 +7,16 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
+  "agent_servers": {
+    "github-copilot-cli": {
+      "type": "registry"
+    },
+    "claude-acp": {
+      "type": "registry",
+    },
+  },
   "edit_predictions": {
-    "provider": "copilot",
+    "provider": "zed",
   },
   "base_keymap": "VSCode",
   "buffer_line_height": "comfortable",
@@ -71,8 +79,8 @@
     },
     "default_profile": "write",
     "default_model": {
-      "provider": "copilot_chat",
-      "model": "gpt-5-mini",
+      "provider": "anthropic",
+      "model": "claude-sonnet-4-5",
     },
     "model_parameters": [],
   },
@@ -87,7 +95,7 @@
   // ── Vim ──────────────────────────────────────────
   "vim_mode": true,
   "vim": {
-    "toggle_relative_line_numbers": true,
+    "toggle_relative_line_numbers": false,
     "use_system_clipboard": "on_yank",
     "use_smartcase_find": true,
     "highlight_on_yank_duration": 250,
@@ -146,12 +154,12 @@
       "formatter": {
         "external": {
           "command": "goimports",
-          "arguments": []
-        }
+          "arguments": [],
+        },
       },
       "tab_size": 4,
-      "hard_tabs": true
-    }
+      "hard_tabs": true,
+    },
   },
   "lsp": {
     "gopls": {
@@ -162,9 +170,9 @@
           "constantValues": true,
           "functionTypeParameters": true,
           "parameterNames": true,
-          "rangeVariableTypes": true
-        }
-      }
-    }
-  }
+          "rangeVariableTypes": true,
+        },
+      },
+    },
+  },
 }

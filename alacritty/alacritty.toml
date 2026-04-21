@@ -36,7 +36,7 @@ vi_mode_style.blinking = "Off"
 save_to_clipboard = true
 
 [general]
-import = ["~/.config/alacritty/themes/themes/coolnight.toml"]
+import = ["~/.config/alacritty/themes/coolnight.toml"]
 
 [[keyboard.bindings]]
 key = "Return"

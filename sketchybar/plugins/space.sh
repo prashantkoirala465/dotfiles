@@ -6,12 +6,20 @@
 
 source "$CONFIG_DIR/colors.sh" # Loads all defined colors
 
-if [ $SELECTED = true ]; then
+if [ "$NAME" = "space.1" ]; then
+  workspace="$FOCUSED_WORKSPACE"
+  if [ -z "$workspace" ]; then
+    workspace="$(aerospace list-workspaces --focused)"
+  fi
+  sketchybar --set "$NAME" icon="$workspace"
+fi
+
+if [ -n "${SELECTED+x}" ] && [ "${SELECTED}" = "true" ]; then
   sketchybar --set $NAME background.drawing=on \
                          background.color=$ACCENT_COLOR \
                          label.color=$BAR_COLOR \
                          icon.color=$BAR_COLOR
-else
+elif [ -n "${SELECTED+x}" ]; then
   sketchybar --set $NAME background.drawing=off \
                          label.color=$ACCENT_COLOR \
                          icon.color=$ACCENT_COLOR

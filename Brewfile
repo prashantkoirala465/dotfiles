@@ -2,7 +2,6 @@
 tap "felixkratz/formulae"
 tap "nikitabobko/tap"
 tap "mongodb/brew"
-tap "charmbracelet/tap"
 
 # ── Core CLI Tools ──────────────────────────────────
 brew "git"
@@ -19,7 +18,7 @@ brew "fzf"
 brew "bat"
 brew "eza"
 brew "zoxide"
-brew "thefuck"
+brew "sesh"
 brew "mise"
 brew "sd"
 brew "dust"
@@ -53,7 +52,7 @@ brew "go"
 brew "lua"
 brew "luajit"
 
-# ── Formatters & Linters ───────────────────────���──
+# ── Formatters & Linters ──────────────────────────
 brew "prettier"
 brew "biome"
 brew "golangci-lint"
@@ -70,17 +69,11 @@ brew "yt-dlp"
 
 # ── macOS Utilities ────────────────────────────────
 brew "felixkratz/formulae/borders"
-brew "felixkratz/formulae/sketchybar"
-
-# ── AI CLIs ────────────────────────────────────────
-brew "gemini-cli"
-brew "charmbracelet/tap/crush"
 
 # ── Misc CLI ───────────────────────────────────────
 brew "fend"
 brew "tlrc"
 brew "gitleaks"
-brew "spicetify-cli"
 brew "mongodb/brew/mongodb-community@7.0"
 
 # ── Cask Applications ─────────────────────────────
@@ -96,9 +89,8 @@ cask "betterdisplay"
 cask "db-browser-for-sqlite"
 cask "monitorcontrol"
 
-# ── AI Tooling Casks ──────────────────────────────
+# ── AI Tooling ────────────────────────────────────
 cask "claude-code"
-cask "copilot-cli"
 
 # ── Fonts ──────────────────────────────────────────
 cask "font-meslo-lg-nerd-font"

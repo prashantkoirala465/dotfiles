@@ -42,7 +42,6 @@ export BUN_INSTALL="$HOME/.bun"
 
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
-export PATH="$HOME/.spicetify:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
@@ -92,20 +91,6 @@ alias ls="eza --icons=always"
 alias ll="eza -la --icons=always --git"
 alias lt="eza --tree --icons=always --level=2"
 alias la="eza -a --icons=always"
-
-# ── TheFuck (lazy loaded) ──────────────────────────
-fuck() {
-  unset -f fuck fk
-  eval $(thefuck --alias)
-  eval $(thefuck --alias fk)
-  fuck "$@"
-}
-fk() {
-  unset -f fuck fk
-  eval $(thefuck --alias)
-  eval $(thefuck --alias fk)
-  fk "$@"
-}
 
 # ── Git Aliases ─────────────────────────────────────
 alias g="git"
