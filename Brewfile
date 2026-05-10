@@ -33,7 +33,7 @@ brew "sevenzip"
 # ── Shell ───────────────────────────────────────────
 brew "zsh-autosuggestions"
 brew "zsh-syntax-highlighting"
-brew "powerlevel10k"
+brew "starship"
 
 # ── Editors & Terminal ──────────────────────────────
 brew "neovim"

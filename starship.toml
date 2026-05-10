@@ -1,0 +1,64 @@
+add_newline = true
+
+format = """
+$directory$git_branch$git_status$nodejs$golang$python$rust$docker_context$cmd_duration
+$character"""
+
+[character]
+success_symbol = "[❯](bold #2CF9ED)"
+error_symbol = "[❯](bold red)"
+
+[directory]
+style = "bold #2CF9ED"
+truncation_length = 3
+truncate_to_repo = true
+format = "[$path]($style)[$read_only]($read_only_style) "
+
+[git_branch]
+symbol = " "
+style = "#06BCE4"
+format = "[$symbol$branch]($style) "
+
+[git_status]
+style = "#B388FF"
+format = "([$all_status$ahead_behind]($style) )"
+ahead = "⇡${count}"
+behind = "⇣${count}"
+diverged = "⇕⇡${ahead_count}⇣${behind_count}"
+modified = "!${count}"
+untracked = "?${count}"
+staged = "+${count}"
+deleted = "✘${count}"
+
+[nodejs]
+symbol = " "
+style = "#06BCE4"
+format = "[$symbol$version]($style) "
+
+[golang]
+symbol = " "
+style = "#06BCE4"
+format = "[$symbol$version]($style) "
+
+[python]
+symbol = " "
+style = "#06BCE4"
+format = "[$symbol$version]($style) "
+
+[rust]
+symbol = " "
+style = "#06BCE4"
+format = "[$symbol$version]($style) "
+
+[docker_context]
+symbol = " "
+style = "#06BCE4"
+format = "[$symbol$context]($style) "
+
+[cmd_duration]
+min_time = 2_000
+style = "yellow"
+format = "[ $duration]($style) "
+
+[line_break]
+disabled = true
