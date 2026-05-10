@@ -1,64 +1,71 @@
 add_newline = true
 
+# Line 1: dir + git on the left, lang versions + duration pushed right
+# Line 2: prompt character
 format = """
-$directory$git_branch$git_status$nodejs$golang$python$rust$docker_context$cmd_duration
+$directory$git_branch$git_status$fill$nodejs$golang$python$docker_context$cmd_duration
 $character"""
 
+[fill]
+symbol = " "
+
 [character]
-success_symbol = "[❯](bold #2CF9ED)"
-error_symbol = "[❯](bold red)"
+success_symbol = "[❯](bold #2cf9ed)"
+error_symbol = "[❯](bold #f38ba8)"
 
 [directory]
-style = "bold #2CF9ED"
-truncation_length = 3
+style = "bold #2cf9ed"
+truncation_length = 4
 truncate_to_repo = true
+home_symbol = "~"
+read_only = " 󰌾"
+read_only_style = "#f38ba8"
 format = "[$path]($style)[$read_only]($read_only_style) "
 
 [git_branch]
 symbol = " "
-style = "#06BCE4"
+style = "#00c4b4"
+truncation_length = 30
 format = "[$symbol$branch]($style) "
 
 [git_status]
-style = "#B388FF"
-format = "([$all_status$ahead_behind]($style) )"
-ahead = "⇡${count}"
-behind = "⇣${count}"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-modified = "!${count}"
-untracked = "?${count}"
-staged = "+${count}"
-deleted = "✘${count}"
+# Each status symbol has its own semantic color inline
+format = '([$all_status$ahead_behind] )'
+ahead    = "[⇡${count}](#2cf9ed)"
+behind   = "[⇣${count}](#2cf9ed)"
+diverged = "[⇕⇡${ahead_count}⇣${behind_count}](#f38ba8)"
+staged   = "[+${count}](#a6e3a1)"
+modified = "[!${count}](#f9e2af)"
+untracked = "[?${count}](#6c7086)"
+deleted  = "[✘${count}](#f38ba8)"
+conflicted = "[~${count}](#f38ba8)"
 
 [nodejs]
 symbol = " "
-style = "#06BCE4"
+style = "#6c7086"
 format = "[$symbol$version]($style) "
+detect_files = ["package.json", ".node-version", ".nvmrc"]
 
 [golang]
 symbol = " "
-style = "#06BCE4"
+style = "#6c7086"
 format = "[$symbol$version]($style) "
 
 [python]
 symbol = " "
-style = "#06BCE4"
-format = "[$symbol$version]($style) "
-
-[rust]
-symbol = " "
-style = "#06BCE4"
+style = "#6c7086"
 format = "[$symbol$version]($style) "
 
 [docker_context]
 symbol = " "
-style = "#06BCE4"
+style = "#6c7086"
 format = "[$symbol$context]($style) "
+only_with_files = true
 
 [cmd_duration]
 min_time = 2_000
-style = "yellow"
-format = "[ $duration]($style) "
+style = "#f9e2af"
+format = "[$duration]($style)"
 
-[line_break]
+[rust]
 disabled = true
