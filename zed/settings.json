@@ -7,14 +7,11 @@
 // custom settings, run `zed: open default settings` from the
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
-  "agent_servers": {
-    "github-copilot-cli": {
-      "type": "registry"
-    },
-    "claude-acp": {
-      "type": "registry",
-    },
+  "cli_default_open_behavior": "new_window",
+  "git_panel": {
+    "dock": "left"
   },
+  "agent_servers": {},
   "edit_predictions": {
     "provider": "zed",
   },
@@ -70,6 +67,7 @@
     "font_size": 11.0,
   },
   "agent": {
+    "dock": "right",
     "tool_permissions": {
       "tools": {
         "terminal": {
@@ -79,12 +77,18 @@
     },
     "default_profile": "write",
     "default_model": {
-      "provider": "anthropic",
-      "model": "claude-sonnet-4-5",
+      "effort": "high",
+      "enable_thinking": false,
+      "provider": "copilot_chat",
+      "model": "gpt-5.2-codex",
     },
     "model_parameters": [],
   },
-  "icon_theme": "Material Icon Theme",
+  "icon_theme": {
+    "mode": "light",
+    "light": "Material Icon Theme",
+    "dark": "Material Icon Theme",
+  },
   "project_panel": {
     "button": true,
     "folder_icons": true,
@@ -136,14 +140,16 @@
   },
 
   "theme": {
-    "mode": "system",
-    "light": "Catppuccin Macchiato",
-    "dark": "Noctis",
+    "mode": "dark",
+    "light": "Ayu Light",
+    "dark": "Noctis Azureus",
   },
   "outline_panel": {
+    "dock": "left",
     "button": false,
   },
   "collaboration_panel": {
+    "dock": "left",
     "button": false,
   },
 

@@ -46,7 +46,7 @@
 
       // ----- Diagnostics -----
       "space x j": "editor::GoToDiagnostic",
-      "space x k": "editor::GoToPreviousDiagnostic",
+      "space x k": "editor::GoToPrevDiagnostic",
 
       // ----- Debug -----
       "space d b": "editor::ToggleBreakpoint",

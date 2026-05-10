@@ -1,10 +1,11 @@
 return {
   {
     "stevearc/conform.nvim",
-    event = "BufWritePre",
+    -- event = 'BufWritePre', -- uncomment for format on save
     opts = require "configs.conform",
   },
 
+  -- These are some examples, uncomment them if you want to see them work!
   {
     "neovim/nvim-lspconfig",
     config = function()
@@ -12,41 +13,16 @@ return {
     end,
   },
 
-  {
-    "nvim-treesitter/nvim-treesitter",
-    opts = {
-      ensure_installed = {
-        "vim",
-        "lua",
-        "vimdoc",
-        "html",
-        "css",
-        "javascript",
-        "typescript",
-        "tsx",
-        "json",
-        "jsonc",
-        "markdown",
-        "markdown_inline",
-        "yaml",
-        "toml",
-        "bash",
-        "regex",
-        "prisma",
-        "graphql",
-        "dockerfile",
-        "gitcommit",
-        "diff",
-        "go",
-        "gomod",
-        "gosum",
-      },
-    },
-  },
+  -- test new blink
+  -- { import = "nvchad.blink.lazyspec" },
 
-  -- Seamless tmux <-> nvim pane navigation with C-h/j/k/l
-  {
-    "christoomey/vim-tmux-navigator",
-    lazy = false,
-  },
+  -- {
+  -- 	"nvim-treesitter/nvim-treesitter",
+  -- 	opts = {
+  -- 		ensure_installed = {
+  -- 			"vim", "lua", "vimdoc",
+  --      "html", "css"
+  -- 		},
+  -- 	},
+  -- },
 }
