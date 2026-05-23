@@ -21,13 +21,39 @@ setopt hist_ignore_dups
 setopt hist_ignore_space
 setopt hist_verify
 
-bindkey '^[[A' history-search-backward
-bindkey '^[[B' history-search-forward
-
 # ── Plugins ─────────────────────────────────────────
 BREW_PREFIX="/opt/homebrew"
 source $BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+# fzf-tab — fuzzy completion menus (must load AFTER compinit, BEFORE syntax-highlighting)
+source $HOME/.config/home/plugins/fzf-tab/fzf-tab.plugin.zsh
+
+# Syntax highlighting — must come AFTER fzf-tab
 source $BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# History substring search — must come AFTER syntax-highlighting
+source $BREW_PREFIX/share/zsh-history-substring-search/zsh-history-substring-search.zsh
+
+# ── fzf-tab config ──────────────────────────────────
+# Show file preview when completing cd
+zstyle ':fzf-tab:complete:cd:*' fzf-preview 'eza --tree --color=always --level=2 $realpath 2>/dev/null'
+zstyle ':fzf-tab:complete:*:*' fzf-preview '[[ -d $realpath ]] && eza --tree --color=always --level=2 $realpath 2>/dev/null || bat --color=always --line-range :500 $realpath 2>/dev/null'
+# Disable sort when completing git checkout (keep recency)
+zstyle ':completion:*:git-checkout:*' sort false
+# Use grouped colors
+zstyle ':completion:*:descriptions' format '[%d]'
+zstyle ':completion:*' list-colors ${(s.:.)LS_COLORS}
+# Switch groups with < and >
+zstyle ':fzf-tab:*' switch-group '<' '>'
+# Continuous trigger so a single tab opens fzf
+zstyle ':fzf-tab:*' fzf-flags --height=50%
+
+# ── Arrow-up substring search (replaces history-search bindings) ──
+bindkey '^[[A' history-substring-search-up
+bindkey '^[[B' history-substring-search-down
+# Vim-style for those moments
+bindkey -M vicmd 'k' history-substring-search-up
+bindkey -M vicmd 'j' history-substring-search-down
 
 # ── Environment ─────────────────────────────────────
 export EDITOR="nvim"

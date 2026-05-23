@@ -55,3 +55,6 @@ fish/
 # Homebrew lock
 Brewfile.lock.json
 *.zip
+
+# External zsh plugin clones (re-cloned via install.sh)
+home/plugins/

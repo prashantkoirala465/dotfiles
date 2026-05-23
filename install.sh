@@ -83,9 +83,19 @@ symlink() {
 }
 
 symlink "$DOTFILES/home/.zshrc"  "$HOME/.zshrc"
-symlink "$DOTFILES/home/.p10k.zsh" "$HOME/.p10k.zsh"
 
-# ── 6. fzf-git.sh ─────────────────────────────────
+# ── 6. fzf-tab plugin ─────────────────────────────
+info "Cloning fzf-tab..."
+FZF_TAB_DIR="$DOTFILES/home/plugins/fzf-tab"
+if [[ ! -d "$FZF_TAB_DIR" ]]; then
+  mkdir -p "$DOTFILES/home/plugins"
+  git clone --depth 1 https://github.com/Aloxaf/fzf-tab "$FZF_TAB_DIR"
+  success "fzf-tab cloned"
+else
+  success "fzf-tab already present"
+fi
+
+# ── 7. fzf-git.sh ─────────────────────────────────
 info "Setting up fzf-git.sh..."
 if [[ ! -d "$HOME/fzf-git.sh" ]]; then
   git clone https://github.com/junegunn/fzf-git.sh.git "$HOME/fzf-git.sh"
