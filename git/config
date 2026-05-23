@@ -21,6 +21,13 @@
 [diff]
 	algorithm = histogram
 	colorMoved = default
+	tool = difftastic
+
+[difftool]
+	prompt = false
+
+[difftool "difftastic"]
+	cmd = difft "$LOCAL" "$REMOTE"
 
 [branch]
 	sort = -committerdate
@@ -54,3 +61,6 @@
 	stale = branch --merged main
 	last = log -1 HEAD --stat
 	conflicts = diff --name-only --diff-filter=U
+	dft = -c diff.external=difft diff
+	dlog = -c diff.external=difft log --ext-diff
+	dshow = -c diff.external=difft show --ext-diff

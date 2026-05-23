@@ -1,4 +1,5 @@
-# ── Prompt ──────────────────────────────────────────
+# ── Starship Prompt ─────────────────────────────────
+export STARSHIP_CONFIG="$HOME/.config/starship.toml"
 eval "$(starship init zsh)"
 
 # ── Completion ──────────────────────────────────────
@@ -237,3 +238,5 @@ alias claude-mem='bun "/Users/prashantkoirala/.claude/plugins/marketplaces/thedo
 # ── Zoxide (MUST stay at the bottom per zoxide doctor) ──
 eval "$(zoxide init zsh)"
 alias cd="z"
+
+# To customize prompt, edit ~/.config/starship.toml

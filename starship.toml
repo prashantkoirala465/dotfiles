@@ -1,72 +1,206 @@
 "$schema" = 'https://starship.rs/config-schema.json'
 
+# ── Layout ─────────────────────────────────────────────────────────────
+# Rounded powerline with gradient color segments.
+# Clean rounded start, no header block, two-line layout, ❯ on input line.
+add_newline = false
+command_timeout = 1000
+scan_timeout = 30
+
 format = """
-[░▒▓](#2cf9ed)\
-[  ](bg:#2cf9ed fg:#001f30)\
-[](bg:#0ea5c0 fg:#2cf9ed)\
+[](#0ea5c0)\
+$os\
+$username\
 $directory\
 [](fg:#0ea5c0 bg:#0a4a65)\
 $git_branch\
 $git_status\
-[](fg:#0a4a65 bg:#02202f)\
+$git_state\
+[](fg:#0a4a65 bg:#1e1b3a)\
 $nodejs\
 $bun\
 $rust\
 $golang\
+$python\
 $php\
-[](fg:#02202f bg:#010d18)\
-$time\
-[ ](fg:#010d18)\
-\n$character"""
+$package\
+$docker_context\
+[](fg:#1e1b3a bg:#2d1b3d)\
+$cmd_duration\
+[](fg:#2d1b3d) \
+$jobs\
+$status\
+$character"""
 
+# ── Palette ────────────────────────────────────────────────────────────
+# Teal     #2cf9ed  → user/os capsule (brightest)
+# Cyan     #0ea5c0  → directory
+# Deep     #0a4a65  → git (deep teal)
+# Indigo   #1e1b3a  → languages (deep purple)
+# Plum     #2d1b3d  → cmd_duration
+# Text-dk  #001f30  → on bright bgs (high-contrast, easy on eyes)
+# Text-lt  #e0f7fa  → soft off-white for dark bgs (avoid pure #ffffff)
+# Accent   #b388ff  → purple highlight
+# Error    #ff6b6b  → red
+
+# ── Character ──────────────────────────────────────────────────────────
+[character]
+success_symbol = "[❯](bold #2cf9ed)"
+error_symbol   = "[❯](bold #ff6b6b)"
+vimcmd_symbol  = "[❮](bold #b388ff)"
+
+# ── OS / User (only show in special contexts: root, SSH) ───────────────
+[os]
+disabled = true
+
+[username]
+show_always = false
+style_user = "bold fg:#cbe0f0 bg:#0ea5c0"
+style_root = "bold fg:#cbe0f0 bg:#ff6b6b"
+format = "[ $user ]($style)"
+
+[hostname]
+ssh_only = true
+ssh_symbol = " "
+style = "bold fg:#cbe0f0 bg:#0ea5c0"
+format = "[$ssh_symbol$hostname ]($style)"
+
+# ── Directory ──────────────────────────────────────────────────────────
 [directory]
-style = "fg:#001f30 bg:#0ea5c0"
-format = "[ $path ]($style)"
+style = "bold fg:#cbe0f0 bg:#0ea5c0"
+format = "[ $path ]($style)[$read_only]($read_only_style)"
 truncation_length = 3
 truncation_symbol = "…/"
+truncate_to_repo = false
+fish_style_pwd_dir_length = 1
+read_only = " "
+read_only_style = "bold fg:#ffe066 bg:#0ea5c0"
+home_symbol = "~"
 
 [directory.substitutions]
-"Documents" = "󰈙 "
-"Downloads" = " "
-"Music" = " "
-"Pictures" = " "
+"Documents" = "󰈙"
+"Downloads" = ""
+"Music"     = ""
+"Pictures"  = ""
+"Developer" = ""
+"projects"  = ""
+"work"      = ""
+".config"   = ""
 
+# ── Git ────────────────────────────────────────────────────────────────
 [git_branch]
 symbol = ""
 style = "bg:#0a4a65"
-format = '[[ $symbol $branch ](fg:#2cf9ed bg:#0a4a65)]($style)'
+format = "[ $symbol $branch ](fg:#2cf9ed bg:#0a4a65)"
+truncation_length = 20
+truncation_symbol = "…"
 
 [git_status]
 style = "bg:#0a4a65"
-format = '[[($all_status$ahead_behind )](fg:#2cf9ed bg:#0a4a65)]($style)'
+format = "[$all_status$ahead_behind ](fg:#ffb86c bg:#0a4a65)"
+conflicted = "= "
+ahead      = "⇡${count} "
+behind     = "⇣${count} "
+diverged   = "⇕⇡${ahead_count}⇣${behind_count} "
+up_to_date = ""
+untracked  = "? "
+stashed    = "≡ "
+modified   = "! "
+staged     = "+ "
+renamed    = "» "
+deleted    = "✘ "
 
+[git_state]
+style = "bold bg:#0a4a65"
+format = "[ $state( $progress_current/$progress_total)](fg:#ff6b6b bg:#0a4a65)"
+rebase     = "REBASE"
+merge      = "MERGE"
+revert     = "REVERT"
+cherry_pick = "PICK"
+bisect     = "BISECT"
+am         = "AM"
+am_or_rebase = "AM/REBASE"
+
+# ── Languages / Runtimes ───────────────────────────────────────────────
 [nodejs]
 symbol = ""
-style = "bg:#02202f"
-format = '[[ $symbol ($version) ](fg:#2cf9ed bg:#02202f)]($style)'
+style = "bg:#1e1b3a"
+format = "[ $symbol $version ](fg:#50fa7b bg:#1e1b3a)"
+detect_files = ["package.json", ".nvmrc", ".node-version"]
+detect_folders = ["node_modules"]
 
 [bun]
 symbol = ""
-style = "bg:#02202f"
-format = '[[ $symbol ($version) ](fg:#2cf9ed bg:#02202f)]($style)'
+style = "bg:#1e1b3a"
+format = "[ $symbol $version ](fg:#ffb86c bg:#1e1b3a)"
+detect_files = ["bun.lockb", "bun.lock", "bunfig.toml"]
 
 [rust]
 symbol = ""
-style = "bg:#02202f"
-format = '[[ $symbol ($version) ](fg:#2cf9ed bg:#02202f)]($style)'
+style = "bg:#1e1b3a"
+format = "[ $symbol $version ](fg:#ffb86c bg:#1e1b3a)"
 
 [golang]
 symbol = ""
-style = "bg:#02202f"
-format = '[[ $symbol ($version) ](fg:#2cf9ed bg:#02202f)]($style)'
+style = "bg:#1e1b3a"
+format = "[ $symbol $version ](fg:#06bce4 bg:#1e1b3a)"
+
+[python]
+symbol = ""
+style = "bg:#1e1b3a"
+format = '[ $symbol $version(\($virtualenv\)) ](fg:#ffb86c bg:#1e1b3a)'
+detect_extensions = ["py"]
+detect_files = ["pyproject.toml", "requirements.txt", "Pipfile", ".python-version"]
+
+[package]
+symbol = "󰏗"
+style = "bg:#1e1b3a"
+format = "[ $symbol $version ](fg:#b388ff bg:#1e1b3a)"
+display_private = false
+
+[docker_context]
+symbol = ""
+style = "bg:#1e1b3a"
+format = "[ $symbol $context ](fg:#06bce4 bg:#1e1b3a)"
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
 
 [php]
-symbol = ""
-style = "bg:#02202f"
-format = '[[ $symbol ($version) ](fg:#2cf9ed bg:#02202f)]($style)'
+disabled = true
+
+# ── Right side ─────────────────────────────────────────────────────────
+[fill]
+symbol = " "
+
+[cmd_duration]
+min_time = 2000
+style = "bg:#2d1b3d"
+format = "[ 󰔚 $duration ](fg:#ffb86c bg:#2d1b3d)"
+show_milliseconds = false
+
+[jobs]
+symbol = "✦ "
+style = "bold #b388ff"
+number_threshold = 1
+format = "[ $symbol$number]($style)"
+
+[status]
+disabled = false
+style = "bold #ff6b6b"
+symbol = "✘ "
+format = "[ $symbol$status]($style)"
+map_symbol = true
+pipestatus = true
+
+# ── Disabled modules ───────────────────────────────────────────────────
+[aws]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[kubernetes]
+disabled = true
 
 [time]
-disabled = false
-time_format = "%R"
-style = "bg:#010d18"
-format = '[[  $time ](fg:#6c7086 bg:#010d18)]($style)'
+disabled = true

@@ -25,10 +25,8 @@ brew "dust"
 brew "hyperfine"
 brew "xh"
 brew "watchexec"
-brew "grex"
-brew "navi"
-brew "tokei"
 brew "sevenzip"
+brew "difftastic"
 
 # ── Shell ───────────────────────────────────────────
 brew "zsh-autosuggestions"
@@ -66,15 +64,19 @@ brew "docker"
 brew "ffmpeg"
 brew "ffmpegthumbnailer"
 brew "yt-dlp"
+brew "imagemagick"
+brew "poppler"
 
 # ── macOS Utilities ────────────────────────────────
 brew "felixkratz/formulae/borders"
 
 # ── Misc CLI ───────────────────────────────────────
-brew "fend"
 brew "tlrc"
 brew "gitleaks"
 brew "mongodb/brew/mongodb-community@7.0"
+
+# ── AI Tooling ────────────────────────────────────
+brew "opencode"
 
 # ── Cask Applications ─────────────────────────────
 cask "alacritty"
@@ -88,8 +90,7 @@ cask "itsycal"
 cask "betterdisplay"
 cask "db-browser-for-sqlite"
 cask "monitorcontrol"
-
-# ── AI Tooling ────────────────────────────────────
+cask "bruno"
 cask "claude-code"
 
 # ── Fonts ──────────────────────────────────────────
