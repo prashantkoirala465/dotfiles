@@ -3,17 +3,9 @@
 # Your keybinds preserved + Smart workspace routing for productivity
 
 # ============================================================
-# STARTUP & INTEGRATIONS
+# STARTUP
 # ============================================================
 start-at-login = true
- 
-  after-startup-command = ['exec-and-forget sketchybar']
- 
-  exec-on-workspace-change = [
-    '/bin/bash',
-    '-c',
-    'sketchybar --set space.1 icon="$AEROSPACE_FOCUSED_WORKSPACE" --trigger aerospace_workspace_change FOCUSED_WORKSPACE="$AEROSPACE_FOCUSED_WORKSPACE"',
-  ]
 
 # ============================================================
 # CORE SETTINGS
@@ -37,9 +29,7 @@ inner.horizontal = 10
 inner.vertical = 10
 outer.left = 10
 outer.bottom = 10
-# # 38 when sketchybar is enabled
-# # outer.top = 38 when sketchybar is active and "5" when sketchybar is not active.
-outer.top = 38
+outer.top = 5
 outer.right = 10
 
 # ============================================================
@@ -131,6 +121,14 @@ alt-shift-f = 'fullscreen'
 alt-tab = 'workspace-back-and-forth'
 alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
+# --- 10x DEV SHORTCUTS ---
+# Quick window close (no service mode dance)
+alt-shift-q = 'close'
+# Quick float toggle for popovers/floating apps
+alt-shift-space = 'layout floating tiling'
+# Quick reload config without entering service mode
+alt-shift-c = 'reload-config'
+
 # --- MODE SWITCHING ---
 alt-shift-semicolon = 'mode service'
 alt-shift-r = 'mode resize'
@@ -168,35 +166,25 @@ alt-shift-l = ['join-with right', 'mode main']
 # ============================================================
 
 # --- WORKSPACE T: Terminals (Main Monitor) ---
-# Quick access to terminal on main screen
 [[on-window-detected]]
 if.app-id = 'org.alacritty'
 run = 'move-node-to-workspace T'
 
-[[on-window-detected]]
-if.app-id = 'dev.warp.Warp-Stable'
-run = 'move-node-to-workspace T'
-
 # --- WORKSPACE P: Primary Dev Tools (Main Monitor) ---
-# Your code editors stay on main monitor
-[[on-window-detected]]
-if.app-id = 'com.microsoft.VSCode'
-run = 'move-node-to-workspace P'
-
-[[on-window-detected]]
-if.app-id = 'com.cursor.ide'
-run = 'move-node-to-workspace P'
-
-[[on-window-detected]]
-if.app-id = 'com.github.GitHubClient'
-run = 'move-node-to-workspace P'
-
-[[on-window-detected]]
-if.app-id = 'com.postmanlabs.mac'
-run = 'move-node-to-workspace P'
-
 [[on-window-detected]]
 if.app-id = 'dev.zed.Zed'
+run = 'move-node-to-workspace P'
+
+[[on-window-detected]]
+if.app-id = 'com.usebruno.bruno'
+run = 'move-node-to-workspace P'
+
+[[on-window-detected]]
+if.app-id = 'com.sqlitebrowser.sqlitebrowser'
+run = 'move-node-to-workspace P'
+
+[[on-window-detected]]
+if.app-id = 'dev.kdrag0n.MacVirt'
 run = 'move-node-to-workspace P'
 
 # --- WORKSPACE B: Browsers (Secondary Monitor) ---
@@ -210,13 +198,8 @@ if.app-id = 'com.apple.Safari'
 run = 'move-node-to-workspace B'
 
 # --- WORKSPACE V: Visual/Design Tools (Secondary Monitor) ---
-# Design reference while coding
 [[on-window-detected]]
 if.app-id = 'com.figma.Desktop'
-run = 'move-node-to-workspace V'
-
-[[on-window-detected]]
-if.app-id = 'com.github.neovide.neovide'
 run = 'move-node-to-workspace V'
 
 [[on-window-detected]]
@@ -233,10 +216,6 @@ run = 'move-node-to-workspace V'
 
 [[on-window-detected]]
 if.app-id = 'com.apple.ImagePlayground'
-run = 'move-node-to-workspace V'
-
-[[on-window-detected]]
-if.app-id = 'com.apple.iPhoneMirroring'
 run = 'move-node-to-workspace V'
 
 [[on-window-detected]]
@@ -263,10 +242,6 @@ run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
 if.app-id = 'com.google.Slides'
-run = 'move-node-to-workspace 6'
-
-[[on-window-detected]]
-if.app-id = 'com.nitropdf.NitroPDFPro'
 run = 'move-node-to-workspace 6'
 
 [[on-window-detected]]
@@ -299,10 +274,6 @@ run = 'move-node-to-workspace N'
 if.app-id = 'com.apple.freeform'
 run = 'move-node-to-workspace N'
 
-[[on-window-detected]]
-if.app-id = 'com.trello.Trello'
-run = 'move-node-to-workspace N'
-
 # --- WORKSPACE M: Communication (Flexible) ---
 [[on-window-detected]]
 if.app-id = 'net.whatsapp.WhatsApp'
@@ -310,22 +281,6 @@ run = 'move-node-to-workspace M'
 
 [[on-window-detected]]
 if.app-id = 'com.hammerandchisel.discord'
-run = 'move-node-to-workspace M'
-
-[[on-window-detected]]
-if.app-id = 'com.tinyspeck.slackmacgap'
-run = 'move-node-to-workspace M'
-
-[[on-window-detected]]
-if.app-id = 'com.tencent.xinWeChat'
-run = 'move-node-to-workspace M'
-
-[[on-window-detected]]
-if.app-id = 'us.zoom.xos'
-run = 'move-node-to-workspace M'
-
-[[on-window-detected]]
-if.app-id = 'com.tencent.wemeet.app'
 run = 'move-node-to-workspace M'
 
 [[on-window-detected]]
@@ -341,10 +296,6 @@ if.app-id = 'com.apple.MobileSMS'
 run = 'move-node-to-workspace M'
 
 # --- WORKSPACE E: Media (Flexible) ---
-[[on-window-detected]]
-if.app-id = 'com.spotify.client'
-run = 'move-node-to-workspace E'
-
 [[on-window-detected]]
 if.app-id = 'com.apple.Music'
 run = 'move-node-to-workspace E'
@@ -465,13 +416,6 @@ run = 'layout floating'
 if.app-id = 'com.apple.Passwords'
 run = 'layout floating'
 
-# ============================================================
-# ZED EDITOR - Floats independently (optional)
-# ============================================================
-# [[on-window-detected]]
-# if.app-id = 'dev.zed.Zed'
-# run = 'layout floating'
-#
 # ============================================================
 # 10x FRONTEND DEVELOPER WORKFLOW GUIDE
 # ============================================================

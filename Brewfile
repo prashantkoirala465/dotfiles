@@ -64,6 +64,7 @@ brew "docker"
 brew "ffmpeg"
 brew "ffmpegthumbnailer"
 brew "yt-dlp"
+brew "deno"            # required by yt-dlp for some extractors
 brew "imagemagick"
 brew "poppler"
 

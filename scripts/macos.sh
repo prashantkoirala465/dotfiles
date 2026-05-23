@@ -45,6 +45,20 @@ defaults write com.apple.finder FXDefaultSearchScope -string "SCcf"
 defaults write com.apple.finder FXEnableExtensionChangeWarning -bool false
 # Show hidden files
 defaults write com.apple.finder AppleShowAllFiles -bool true
+# Allow quitting Finder via Cmd+Q (closes all open windows)
+defaults write com.apple.finder QuitMenuItem -bool true
+# Disable warning before emptying trash
+defaults write com.apple.finder WarnOnEmptyTrash -bool false
+# Show ~/Library folder (hidden by default)
+chflags nohidden "$HOME/Library" 2>/dev/null || true
+# Show /Volumes folder
+sudo chflags nohidden /Volumes 2>/dev/null || true
+
+# ── Anti-Pollution (no .DS_Store everywhere) ─────────
+# Don't create .DS_Store on network volumes
+defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
+# Don't create .DS_Store on USB drives
+defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
 # ── Animations ─────────────────────────────────────
 # Speed up Mission Control animation
@@ -75,6 +89,38 @@ sudo pmset -a hibernatemode 0
 # Disable sudden motion sensor (SSD only)
 sudo pmset -a sms 0
 
+# ── UI Polish ──────────────────────────────────────
+# Disable annoying "shake to find cursor"
+defaults write NSGlobalDomain CGDisableCursorLocationMagnification -bool true
+# Speed up window resize animations
+defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+# Disable smooth scrolling (snappier feel)
+defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
+# Always show scroll bars when scrolling
+defaults write NSGlobalDomain AppleShowScrollBars -string "WhenScrolling"
+# Subpixel font smoothing on external monitors (sharper text)
+defaults write NSGlobalDomain AppleFontSmoothing -int 1
+# Disable focus ring animation
+defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
+# Disable automatic window tabbing
+defaults write NSGlobalDomain AppleWindowTabbingMode -string "manual"
+
+# ── Menu Bar ───────────────────────────────────────
+# Show seconds in clock
+defaults write com.apple.menuextra.clock ShowSeconds -bool true
+# Show date in menu bar clock
+defaults write com.apple.menuextra.clock ShowDate -int 1
+# Show battery percentage
+defaults write ~/Library/Preferences/ByHost/com.apple.controlcenter.plist BatteryShowPercentage -bool true
+
+# ── App Behavior ───────────────────────────────────
+# Disable the "Are you sure you want to open this application?" dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+# Save documents to disk (not iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+# Disable resume system-wide (no restored windows on app launch)
+defaults write NSGlobalDomain NSQuitAlwaysKeepsWindows -bool false
+
 # ── Misc ───────────────────────────────────────────
 # Expand save panel by default
 defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -84,7 +130,8 @@ defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
 defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
 
 # ── Apply Changes ─────────────────────────────────
-killall Dock 2>/dev/null || true
-killall Finder 2>/dev/null || true
+for app in "Dock" "Finder" "SystemUIServer" "cfprefsd"; do
+  killall "$app" 2>/dev/null || true
+done
 
-echo "Done! Some changes require a reboot to take effect."
+echo "Done! Some changes require a logout/reboot to take effect."

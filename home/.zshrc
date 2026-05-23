@@ -37,7 +37,6 @@ export VISUAL="nvim"
 export BUN_INSTALL="$HOME/.bun"
 
 export PATH="$HOME/.local/bin:$PATH"
-export PATH="/opt/homebrew/opt/sqlite/bin:$PATH"
 export PATH="$HOME/go/bin:$PATH"
 export PATH="$BUN_INSTALL/bin:$PATH"
 
